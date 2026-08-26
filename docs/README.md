@@ -8,4 +8,5 @@
 
 | 아이디어 | 디렉토리 | 상태 | 비고 |
 |---|---|---|---|
-| 프롬프트 팩 (Prompt Pack) | [prompt-pack/](prompt-pack/) | 아이디어 (검증 전) | 미리 만든 프롬프트 체인 + HTML 산출물 서비스. 첫 버티컬은 일본 자유여행 일정 설계 (삿포로/노보리베츠 케이스) |
+| 프롬프트 팩 (Prompt Pack) | [prompt-pack/](prompt-pack/) | 아이디어 (검증 전) | 미리 만든 프롬프트 체인 + HTML 산출물 서비스. 고정 마감에서 역산하는 "제약 역산 엔진"으로 재정의 |
+| 수식 맵 압축 (Formula Map Compression) | [formula-map-compression/](formula-map-compression/) | ❌ 원안 기각 / 🟡 대안 검토 | 수식 맵 번호로 많은 바이트를 대체하는 압축. 범용 무손실로는 수학적 불가능(개수 세기) — 도메인 특화 압축기로 방향 전환 권고 |
