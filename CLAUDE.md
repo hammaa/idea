@@ -31,5 +31,8 @@ Note: as of now, the `docs/` directory does not exist yet. When adding a new ide
 
 ## Standing rules
 
+Full detail (and the day-end "오늘일 정리해" procedure) lives in [dev-docs/guides/workflow-guide.md](dev-docs/guides/workflow-guide.md) — this section is the summary; if the two disagree, the guide wins.
+
 - **Always persist as documents.** Any idea, plan, or piece of research discussed in conversation must be written into the appropriate file under `docs/` (not left only in chat). Use the idea directory structure above; update `docs/README.md`'s idea list whenever an idea is added, renamed, or removed.
-- **Always commit and push immediately.** After creating or updating any document in this repo, run `git add`, `git commit`, and `git push` right away in the same turn — do not batch changes or wait for the user to ask. This repo has no CI/build to break, so this is pre-authorized and does not need per-change confirmation. Write concise commit messages (Korean or English) describing what idea/document changed.
+- **Always commit and push immediately — every time, no exceptions.** After creating or updating any document (or script/config) in this repo, run `git add`, `git commit`, and `git push` right away in the same turn — do not batch changes, wait for "오늘일 정리해," or wait for the user to ask. This repo has no CI/build to break, so this is pre-authorized and does not need per-change confirmation. Write concise commit messages (Korean or English) describing what idea/document changed.
+- **Day-end summary ("오늘일 정리해").** When the user asks for this, write `dev-docs/changelog/YYYY-MM-DD.md` summarizing the day's document/idea/infra changes, refresh `docs/README.md`'s idea list if needed, then commit and push — see the workflow guide for the exact steps.
