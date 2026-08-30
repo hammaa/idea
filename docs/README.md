@@ -20,6 +20,6 @@
 | prompt-pack | 7 | 2026-08-26 |
 | formula-map-compression | 12 + 측정 스크립트 13 | 2026-08-27 |
 | gov-open-data | 4 | 2026-08-30 |
-| billiards-3cushion-solver | 7 | 2026-08-30 |
+| billiards-3cushion-solver | 8 | 2026-08-30 |
 
 > 일자별 진행 내역은 [dev-docs/changelog/](../dev-docs/changelog/) 참조.
