@@ -10,6 +10,7 @@
 |---|---|---|---|
 | 프롬프트 팩 (Prompt Pack) | [prompt-pack/](prompt-pack/) | 아이디어 (검증 전) | 미리 만든 프롬프트 체인 + HTML 산출물 서비스. 고정 마감에서 역산하는 "제약 역산 엔진"으로 재정의 |
 | 수식 맵 압축 (Formula Map Compression) | [formula-map-compression/](formula-map-compression/) | ❌ 원안 기각 / ✅ 올바른 형태 실측 완료 | 수식 맵 번호로 많은 바이트를 대체하는 압축. 범용 무손실은 수학적 불가능(개수 세기)이나, 맵을 데이터에서 학습시키면 성립 — `zstd --train`으로 gzip 대비 69.3% 절감 실측. 사전을 거대하게(2^32) 키우는 방향은 실측으로 기각, 대신 **좁은 사전 여러 개**가 방향 (문서 11개) |
+| 정부 정보 공개 (Government Information Access) | [gov-open-data/](gov-open-data/) | 📚 레퍼런스 조사 | 아이디어 아님 — **원재료 조사**. 정보공개청구/공공데이터개방/의무공시/통계마이크로데이터/제한구역 5개 경로 구분, 13개 도메인 데이터 카탈로그, 공공누리 라이선스와 접근 제약 |
 
 ## 문서 규모
 
@@ -17,5 +18,6 @@
 |---|:-:|---|
 | prompt-pack | 7 | 2026-08-26 |
 | formula-map-compression | 12 + 측정 스크립트 13 | 2026-08-27 |
+| gov-open-data | 4 | 2026-08-30 |
 
 > 일자별 진행 내역은 [dev-docs/changelog/](../dev-docs/changelog/) 참조.
