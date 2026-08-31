@@ -116,6 +116,12 @@ td.num{text-align:right; color:var(--text)}
 .kv .v{color:var(--text)}
 .kv .v em{font-style:normal; font-family:"IBM Plex Mono",monospace; color:var(--accent)}
 
+.origin{background:var(--surface-2); border:1px solid var(--line);
+  border-left:2px solid var(--cool); border-radius:var(--r);
+  padding:12px 14px; margin:0 0 14px; font-size:13px; color:var(--muted); line-height:1.75}
+.origin b{color:var(--text); font-weight:500}
+.origin .ol{display:block; font-family:Archivo,sans-serif; font-size:10px; font-weight:600;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--cool); margin-bottom:6px}
 .warn{background:var(--surface-2); border:1px solid var(--line);
   border-left:2px solid var(--pend); border-radius:var(--r);
   padding:11px 13px; font-size:12.5px; color:var(--muted); margin-top:14px; line-height:1.65}
@@ -320,21 +326,33 @@ ol.check b{color:var(--text); font-weight:500}
 /* ── 확인 상태: ok = 출처로 확인 / part = 일부만 / none = 이름만 ── */
 const SYS=[
 {
-  id:"fh", name:"파이브 앤 하프", en:"Five and a Half · Corner 5", conf:"part",
-  fam:"뺄셈 계열", formula:"수구수 − 3쿠션수 = 1쿠션수",
-  pattern:["장","단","장"], patNote:"수구 쪽 장쿠션에서 출발 → 건너편 장 → 단 → 다시 수구 쪽 장",
-  use:"빈쿠션 3뱅크, 뒤돌리기, 옆돌리기. 3쿠션에서 가장 많이 쓰이는 기본 시스템",
-  tip:"2~3팁 (순회전)",
+  id:"fh", name:"파이브 앤 하프", en:"Five and a Half · Corner 5", conf:"ok",
+  fam:"뺄셈 계열", formula:"3쿠션값 = 출발값(수구수) − 1쿠션값",
+  pattern:["장","단","장"], patNote:"수구 쪽 장쿠션 출발 → 건너편 장 → 단 → 다시 수구 쪽 장",
+  use:"빈쿠션 3뱅크, 뒤돌리기, 옆돌리기. <b>3쿠션에서 가장 많이 쓰이는 기본 시스템</b>",
+  tip:"<b>3팁</b> — 출발값에 따라 시계 방향이 바뀐다 (아래 보정 참조)",
+  origin:"<b>이름의 뜻이 곧 원리다.</b> <b>「5」</b>는 코너와 첫 다이아몬드 <b>사이</b>, 즉 <b>1쿠션값 5</b>를 가리킨다. " +
+         "<b>회전 없이</b> 그 지점을 치면 수구는 <b>출발점과 코너의 딱 중간</b>에 떨어진다 — 그게 <b>「앤 하프(½)」</b>다. " +
+         "회전을 주고 치면 겨냥점이 <b>첫 다이아몬드(값 10)</b> 쪽으로 밀린다. " +
+         "즉 시스템 이름은 <b>무회전 기준선</b>에서 왔고, 실전 공식은 그 위에 회전을 얹은 것이다.",
   scale:[
-    ["수구수 (출발)","코너 <em>50</em>. 장쿠션 쪽 한 칸당 <em>−5</em> (45·40·35·30·25·20) / 단쿠션 쪽 한 칸당 <em>+10</em> (60·70·80)"],
-    ["1쿠션수","1~5칸 = <em>10~50</em> (칸당 10). <em>5를 넘으면 반 칸당 10</em> → 60·70·80·90"],
-    ["3쿠션수 (도착)","칸당 <em>10</em> (10·20·30)"]
+    ["수구수 — 코너","<em>50</em>"],
+    ["수구수 — 장쿠션","<b>두 칸당 10</b> = 한 칸당 <em>5</em> → 50·45·40·35·30·25·20"],
+    ["수구수 — 단쿠션","한 칸당 <em>10</em> → 50·60·70. <b>70을 넘으면 반 칸당 10</b> → 80·90"],
+    ["1쿠션값 — 코너","<em>0</em>"],
+    ["1쿠션값","한 칸당 <em>10</em> → 10·20·30·40·50. <b>50부터는 반 칸당 10</b> → 60·70·80·90"],
+    ["3쿠션값 — 코너","<em>0</em>"],
+    ["3쿠션값","한 칸당 <em>10</em> → 10·20·30·40. <b>40부터는 반 칸당 10</b> → 50·60·70"]
   ],
-  ex:[["수구수 50 → 3쿠션 20으로 보내려면","1쿠션 <em>30</em>"],
-      ["수구수 50 → 1쿠션 50","3쿠션 <em>0</em> (코너)"],
-      ["수구수 30 → 3쿠션 20으로 보내려면","1쿠션 <em>10</em> — 다만 4쿠션이 짧게 온다"]],
-  adj:"수구수가 50보다 작으면 더하고, 크면 빼는 보정이 붙는다. 빈쿠션은 두 칸당 2.5 보정.",
-  warn:"숫자표 출처가 <b>1건</b>이다. 특히 수구수의 <b>장쿠션 칸당 −5 / 단쿠션 칸당 +10</b>이라는 비대칭 척도는 교재로 반드시 대조해야 한다."
+  ex:[["수구수 50 → 3쿠션 20","1쿠션 <em>30</em>&nbsp;&nbsp;(50 − 20 = 30)"],
+      ["1쿠션 30을 치면","3쿠션 <em>20</em>&nbsp;&nbsp;(20 = 50 − 30)"],
+      ["수구수 50 → 1쿠션 50","3쿠션 <em>0</em> = 코너"],
+      ["수구수 80 → 3쿠션 40","1쿠션 <em>40</em>&nbsp;&nbsp;(80 − 40 = 40) — 4번째 포인트"]],
+  adj:"<b>당점이 출발값에 따라 바뀐다</b> — 출발 <em>30 이하</em>는 10시 30분 3팁, <em>30~70</em>은 9시 30분 3팁, <em>70 이상</em>은 9시 3팁. " +
+      "수구수 50이 기준선이라 거기서 멀어질수록 보정이 붙고, 빈쿠션은 두 칸당 2.5.",
+  warn:"<b>출처 2건이 서로 확인해 준다</b> — 공식·척도·당점이 모두 일치했고, 3쿠션값의 <b>40 이상 반 칸당 10</b>과 " +
+       "수구수 단쿠션의 <b>70 이상 반 칸당 10</b>은 두 번째 출처에서 추가로 확보한 것이다. " +
+       "다만 <b>당구대 검증은 아직 안 했다.</b> 표가 맞는지는 수구수 50 → 1쿠션 30 → 3쿠션 20을 실제로 쳐 보면 갈린다."
 },
 {
   id:"plus", name:"플러스", en:"Plus System", conf:"ok",
@@ -473,6 +491,7 @@ SYS.forEach((sys,idx)=>{
     ' <span class="b '+cf.c+'">'+cf.t+'</span></h3><div class="en">'+sys.en+
     (sys.fam!=="—"?" · "+sys.fam:"")+'</div></div></div>';
   if(sys.formula!=="—") h+='<div class="formula">'+sys.formula+'</div>';
+  if(sys.origin) h+='<div class="origin"><span class="ol">이름의 유래</span>'+sys.origin+'</div>';
 
   h+='<div class="grid2"><div>';
   h+='<div class="tblwrap"><table><thead><tr><th>값</th><th>척도 / 내용</th></tr></thead><tbody>';
