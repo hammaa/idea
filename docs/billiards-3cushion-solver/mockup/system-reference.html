@@ -1,0 +1,411 @@
+<title>쓰리쿠션 시스템 눈금표</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#0C1418; --surface:#15222A; --surface-2:#1B2C35; --line:#24373F;
+  --felt:#0E5C58; --felt-lo:#0A4744; --rail:#2B1E16; --rail-hi:#3D2C21;
+  --pearl:#EFE6D2; --accent:#E8A33D; --accent-dim:#8A6425;
+  --cool:#4FA3C4; --warm:#E0663C;
+  --text:#DCE7EC; --muted:#8FA6B0; --dim:#5D7681;
+  --ok:#5FB39A; --pend:#B4763F; --r:3px;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --ground:#EDEFED; --surface:#FFFFFF; --surface-2:#F3F5F4; --line:#D3DAD9;
+    --pearl:#FFF8E9; --accent:#9A5F0A; --accent-dim:#D8B47A;
+    --cool:#1F6B88; --warm:#B3401A; --rail:#3D2C21; --rail-hi:#54402F;
+    --text:#16232A; --muted:#4A5D66; --dim:#7C8D95;
+    --ok:#1F6F55; --pend:#8A5312;
+  }
+}
+:root[data-theme="light"]{
+  --ground:#EDEFED; --surface:#FFFFFF; --surface-2:#F3F5F4; --line:#D3DAD9;
+  --pearl:#FFF8E9; --accent:#9A5F0A; --accent-dim:#D8B47A;
+  --cool:#1F6B88; --warm:#B3401A; --rail:#3D2C21; --rail-hi:#54402F;
+  --text:#16232A; --muted:#4A5D66; --dim:#7C8D95;
+  --ok:#1F6F55; --pend:#8A5312;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--ground); color:var(--text);
+  font-family:"IBM Plex Sans KR","Helvetica Neue",system-ui,sans-serif;
+  font-weight:300; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px; margin:0 auto; padding:28px 18px 80px}
+
+header{border-bottom:1px solid var(--line); padding-bottom:22px; margin-bottom:24px}
+.eyebrow{font-family:Archivo,sans-serif; font-weight:600; font-size:11px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
+h1{font-family:Archivo,"IBM Plex Sans KR",sans-serif; font-weight:700;
+  font-size:clamp(27px,5vw,40px); line-height:1.1; margin:.35em 0 .3em;
+  letter-spacing:-.02em; text-wrap:balance}
+.sub{color:var(--muted); font-size:15px; max-width:64ch; margin:0}
+
+.b{display:inline-flex; align-items:center; gap:4px; vertical-align:middle;
+  font-family:"IBM Plex Mono",monospace; font-size:9.5px; font-weight:500;
+  letter-spacing:.06em; padding:1px 5px; border-radius:2px;
+  border:1px solid currentColor; white-space:nowrap; line-height:1.5}
+.b-ok{color:var(--ok)} .b-part{color:var(--accent)} .b-none{color:var(--pend)}
+
+.card{background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--r); padding:17px 17px 19px; margin-bottom:18px}
+.card h2{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--muted);
+  margin:0 0 13px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.card p{margin:0 0 10px; font-size:14px}
+.card p:last-child{margin-bottom:0}
+.card b{font-weight:500; color:var(--text)}
+
+.lead{font-size:15px; line-height:1.75}
+.lead strong{color:var(--accent); font-weight:600}
+
+/* 계열 분류 */
+.fam{display:grid; gap:11px; grid-template-columns:1fr}
+@media(min-width:780px){ .fam{grid-template-columns:repeat(3,1fr)} }
+.fi{background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r);
+  padding:13px 14px; border-top:2px solid var(--accent)}
+.fi h3{font-family:Archivo,"IBM Plex Sans KR",sans-serif; font-size:15px; font-weight:600;
+  margin:0 0 4px; color:var(--text)}
+.fi code{font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--accent);
+  display:block; margin:6px 0 8px}
+.fi p{font-size:12.5px; color:var(--muted); margin:0; line-height:1.6}
+
+/* tabs */
+.tabs{display:flex; gap:5px; flex-wrap:wrap; margin-bottom:16px}
+.tab{font-family:"IBM Plex Sans KR",sans-serif; font-size:13px; font-weight:400;
+  padding:7px 13px; background:var(--surface); color:var(--muted);
+  border:1px solid var(--line); border-radius:var(--r); cursor:pointer;
+  display:flex; align-items:center; gap:6px}
+.tab:hover{color:var(--text); border-color:var(--dim)}
+.tab[aria-selected="true"]{background:var(--surface-2); color:var(--accent);
+  border-color:var(--accent-dim); font-weight:500}
+.tab:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.tab .dot{width:6px; height:6px; border-radius:50%; flex:0 0 auto}
+.panel[hidden]{display:none}
+
+.syshead{display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap;
+  padding-bottom:14px; margin-bottom:14px; border-bottom:1px solid var(--line)}
+.syshead .t{flex:1 1 260px; min-width:0}
+.syshead h3{font-family:Archivo,"IBM Plex Sans KR",sans-serif; font-size:22px;
+  font-weight:700; margin:0 0 3px; letter-spacing:-.01em}
+.syshead .en{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--dim)}
+.formula{font-family:"IBM Plex Mono",monospace; font-size:15px; font-weight:500;
+  color:var(--accent); background:var(--surface-2); border:1px solid var(--line);
+  border-left:2px solid var(--accent); border-radius:var(--r);
+  padding:11px 14px; margin:12px 0; overflow-x:auto}
+
+.grid2{display:grid; gap:16px; grid-template-columns:1fr}
+@media(min-width:820px){ .grid2{grid-template-columns:minmax(0,1fr) 260px} }
+.mini{background:var(--rail); border-radius:var(--r); padding:9px}
+.mini svg{display:block; width:100%; height:auto}
+.mini .cap{font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--pearl);
+  opacity:.6; text-align:center; margin-top:6px}
+
+.tblwrap{overflow-x:auto; margin:0 -3px; padding:0 3px}
+table{border-collapse:collapse; width:100%; min-width:420px;
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px}
+th,td{padding:6px 8px; text-align:left; white-space:nowrap; font-variant-numeric:tabular-nums}
+thead th{color:var(--dim); font-weight:500; font-size:10.5px; letter-spacing:.07em;
+  text-transform:uppercase; border-bottom:1px solid var(--line); padding-bottom:7px}
+tbody tr:not(:last-child) th,tbody tr:not(:last-child) td{border-bottom:1px solid var(--line)}
+tbody th{color:var(--muted); font-weight:500}
+td.num{text-align:right; color:var(--text)}
+
+.kv{display:flex; flex-direction:column; gap:9px; font-size:13px}
+.kv > div{display:grid; grid-template-columns:88px 1fr; gap:10px; align-items:baseline}
+.kv .k{color:var(--dim); font-size:12px}
+.kv .v{color:var(--text)}
+.kv .v em{font-style:normal; font-family:"IBM Plex Mono",monospace; color:var(--accent)}
+
+.warn{background:var(--surface-2); border:1px solid var(--line);
+  border-left:2px solid var(--pend); border-radius:var(--r);
+  padding:11px 13px; font-size:12.5px; color:var(--muted); margin-top:14px; line-height:1.65}
+.warn b{color:var(--text); font-weight:500}
+
+.note{font-size:12px; color:var(--dim); line-height:1.65; margin:12px 0 0}
+.note b{color:var(--muted); font-weight:400}
+
+footer{margin-top:30px; padding-top:20px; border-top:1px solid var(--line)}
+footer h3{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin:0 0 12px}
+ol.check{margin:0; padding-left:20px; font-size:13.5px; color:var(--muted); line-height:1.8}
+ol.check b{color:var(--text); font-weight:500}
+.link{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-dim)}
+.link:hover{border-bottom-color:var(--accent)}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">3-Cushion · 국제식 대대 2844 × 1422</div>
+  <h1>표식은 하나인데 숫자는 시스템마다 다르다</h1>
+  <p class="sub">
+    레일의 점을 다이아몬드라 부르든 포인트라 부르든 물건은 같다.
+    달라지는 것은 <b style="color:var(--text);font-weight:500">그 점에 어떤 숫자를 매기느냐</b>이고, 그게 시스템의 정체다.
+  </p>
+</header>
+
+<!-- ========== 다이아몬드 vs 포인트 ========== -->
+<div class="card">
+  <h2>먼저 — 다이아몬드와 포인트는 같은 것이다</h2>
+  <p class="lead">
+    레일(프레임)에 박힌 자개 마름모가 <strong>다이아몬드(diamond)</strong>다. 한국 당구장에서는 보통 <strong>포인트</strong>라고 부른다.
+    <b>이름이 둘일 뿐 물건은 하나다.</b>
+  </p>
+  <p class="lead">
+    그 표식을 써서 각을 계산하는 방법들을 통틀어 <strong>다이아몬드 시스템</strong>이라 부른다.
+    그러니까 다이아몬드는 <b>어디서 쓰는 것</b>이 아니라 <b>전부 다 그것을 쓴다</b> — 다만
+    <strong>시스템마다 같은 표식에 다른 숫자를 매긴다.</strong>
+  </p>
+  <div class="tblwrap" style="margin-top:14px"><table>
+    <thead><tr><th>층</th><th>무엇</th><th>예</th></tr></thead>
+    <tbody>
+      <tr><th>물리</th><td style="color:var(--text)">레일 위의 표식 자체</td><td style="color:var(--muted)">장쿠션 8개 · 단쿠션 4개 · 간격 355.5 mm</td></tr>
+      <tr><th>일반 좌표</th><td style="color:var(--text)">위치를 읽는 공통 눈금</td><td style="color:var(--muted)">점 1칸 = <b style="color:var(--accent)">10 포인트</b> · 장 0–80 / 단 0–40</td></tr>
+      <tr><th>시스템 숫자</th><td style="color:var(--text)">계산용으로 다시 매긴 값</td><td style="color:var(--muted)">파이브앤하프 수구수는 코너가 <b style="color:var(--accent)">50</b>, 칸당 −5</td></tr>
+    </tbody>
+  </table></div>
+  <div class="warn">
+    <b>그래서 "3포인트에 놓고"라는 말은 시스템을 말하기 전엔 위치만 가리킨다.</b>
+    같은 자리가 파이브앤하프에서는 수구수 35이고, 3쿠션수로는 30이다.
+    <b>숫자를 말할 때는 어느 시스템의 어느 값인지를 같이 말해야 한다.</b>
+  </div>
+</div>
+
+<!-- ========== 계열 분류 ========== -->
+<div class="card">
+  <h2>시스템은 결국 세 계열이다</h2>
+  <p style="color:var(--muted); font-size:13.5px; margin-bottom:14px; max-width:72ch">
+    이름은 수십 개지만, <b>무엇을 더하고 빼는가</b>로 묶으면 세 갈래로 정리된다.
+    새 시스템 이름을 만나면 먼저 어느 계열인지부터 보면 된다.
+  </p>
+  <div class="fam">
+    <div class="fi">
+      <h3>뺄셈 계열</h3>
+      <code>수구수 − 3쿠션수 = 1쿠션수</code>
+      <p>도착점을 정해 놓고 <b style="color:var(--text);font-weight:400">어디를 칠지</b>를 역산한다.
+        순회전(정회전)으로 장→단→장.<br><b style="color:var(--text);font-weight:400">파이브앤하프 · 35 계열</b></p>
+    </div>
+    <div class="fi">
+      <h3>덧셈 계열</h3>
+      <code>수구수 + 1쿠션수 = 3쿠션수</code>
+      <p>칠 곳을 정하고 <b style="color:var(--text);font-weight:400">어디로 갈지</b>를 예측한다.<br>
+        <b style="color:var(--text);font-weight:400">플러스 · 플러스투 · 도쿄</b></p>
+    </div>
+    <div class="fi">
+      <h3>볼값 계열</h3>
+      <code>1적구수 + 도착수 + 기울기</code>
+      <p>빈쿠션이 아니라 <b style="color:var(--text);font-weight:400">공을 맞히고 도는</b> 배치.
+        두께와 팁으로 값을 나눠 갖는다.<br><b style="color:var(--text);font-weight:400">앞돌리기 · 옆돌리기</b></p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TABS ========== -->
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="panels"></div>
+
+<footer>
+  <h3>이 표를 확정하려면 — 남은 작업</h3>
+  <ol class="check">
+    <li><b>교재 2~3종 대조.</b> 아래 시스템 중 <span class="b b-part">부분</span>과 <span class="b b-none">이름만</span> 표시된 것들의 전체 숫자표를 옮겨 적고, 서로 일치하는지 본다.</li>
+    <li><b>데이텀 확정.</b> 값마다 기준이 다르다 — 파이브앤하프에서 수구수·1쿠션수는 <b>당점 기준</b>, 3쿠션수는 <b>공이 쿠션 천에 닿는 부위 기준</b>이다. 이걸 섞으면 상시 0.5~1포인트 오차가 난다.</li>
+    <li><b>당구대 검증.</b> 기준선을 실제로 쳐 본다. 예: 파이브앤하프 <b>수구수 50 → 1쿠션 30 → 3쿠션 20</b>.
+      맞지 않으면 표가 틀렸거나 그 대의 보정값이 필요한 것이고, 둘 중 어느 쪽인지도 몇 번 쳐 보면 갈린다.</li>
+    <li><b>그다음에 계산기에 넣는다.</b> 검증 전 숫자를 도구에 넣으면, 틀린 답을 자신 있게 주는 도구가 된다.</li>
+  </ol>
+  <p class="note" style="margin-top:16px">
+    같이 보기 — <a class="link" href="https://claude.ai/code/artifact/9fe04f42-d21d-46ed-be87-0e534cffedf9">큐 감도 계산기</a>
+    (당점·타법·스쿼트·회전 감쇠를 실제로 계산하는 화면)
+  </p>
+</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ── 확인 상태: ok = 출처로 확인 / part = 일부만 / none = 이름만 ── */
+const SYS=[
+{
+  id:"fh", name:"파이브 앤 하프", en:"Five and a Half · Corner 5", conf:"part",
+  fam:"뺄셈 계열", formula:"수구수 − 3쿠션수 = 1쿠션수",
+  pattern:["장","단","장"], patNote:"수구 쪽 장쿠션에서 출발 → 건너편 장 → 단 → 다시 수구 쪽 장",
+  use:"빈쿠션 3뱅크, 뒤돌리기, 옆돌리기. 3쿠션에서 가장 많이 쓰이는 기본 시스템",
+  tip:"2~3팁 (순회전)",
+  scale:[
+    ["수구수 (출발)","코너 <em>50</em>. 장쿠션 쪽 한 칸당 <em>−5</em> (45·40·35·30·25·20) / 단쿠션 쪽 한 칸당 <em>+10</em> (60·70·80)"],
+    ["1쿠션수","1~5칸 = <em>10~50</em> (칸당 10). <em>5를 넘으면 반 칸당 10</em> → 60·70·80·90"],
+    ["3쿠션수 (도착)","칸당 <em>10</em> (10·20·30)"]
+  ],
+  ex:[["수구수 50 → 3쿠션 20으로 보내려면","1쿠션 <em>30</em>"],
+      ["수구수 50 → 1쿠션 50","3쿠션 <em>0</em> (코너)"],
+      ["수구수 30 → 3쿠션 20으로 보내려면","1쿠션 <em>10</em> — 다만 4쿠션이 짧게 온다"]],
+  adj:"수구수가 50보다 작으면 더하고, 크면 빼는 보정이 붙는다. 빈쿠션은 두 칸당 2.5 보정.",
+  warn:"숫자표 출처가 <b>1건</b>이다. 특히 수구수의 <b>장쿠션 칸당 −5 / 단쿠션 칸당 +10</b>이라는 비대칭 척도는 교재로 반드시 대조해야 한다."
+},
+{
+  id:"plus", name:"플러스", en:"Plus System", conf:"part",
+  fam:"덧셈 계열", formula:"수구수 + 1쿠션수 = 3쿠션수",
+  pattern:["단","장","단"], patNote:"패턴 확인 필요 — 자료마다 표기가 다르다",
+  use:"수구가 단쿠션 근처에 있고 반대편으로 넘기는 배치",
+  tip:"상단 2팁",
+  scale:[["수구수","확인 필요"],["1쿠션수","확인 필요"],["3쿠션수","확인 필요"]],
+  ex:[],
+  adj:"확인 필요",
+  warn:"<b>공식과 기본 당점(상단 2팁)만 확인됐다.</b> 각 레일의 숫자 배치는 아직 출처를 확보하지 못했다."
+},
+{
+  id:"plus2", name:"플러스 투", en:"Plus Two", conf:"part",
+  fam:"덧셈 계열", formula:"수구수 + 1쿠션수 기반 — 2를 더하는 변형",
+  pattern:["단","장","단"], patNote:"패턴 확인 필요",
+  use:"플러스와 같은 계열이나 회전을 더 많이 주는 배치",
+  tip:"중단 3팁 (3시 또는 9시)",
+  scale:[["수구수","확인 필요"],["1쿠션수","확인 필요"],["3쿠션수","확인 필요"]],
+  ex:[["특징","큐볼을 45° 각도로 1쿠션에 보내면 3쿠션 지점이 대칭으로 나온다는 설명이 있음"]],
+  adj:"확인 필요",
+  warn:"<b>자료마다 공식 표기가 갈린다.</b> 어떤 자료는 <code>(목적구수/2) − (수구수+20) = 1쿠션수</code> 형태로 적는다 — 확인된 것은 <b>당점이 중단 3팁</b>이라는 것뿐이다."
+},
+{
+  id:"rev", name:"리버스", en:"Reverse · 역회전", conf:"part",
+  fam:"뺄셈 계열", formula:"자료에 「50 − 40 = 코너」 형태로 소개됨 — 확인 필요",
+  pattern:["장","장","단"], patNote:"장장단 패턴. 진행 거리가 길지 않다",
+  use:"역회전을 걸어 1쿠션에 넣는 배치. 장장단",
+  tip:"역회전 (수구 진행 방향 반대쪽 회전)",
+  scale:[["척도","확인 필요"]],
+  ex:[],
+  adj:"약하게 치면 <b>1쿠션에서 역회전이 다 죽어</b> 뒤쪽 쿠션에서 실패한다. 임팩트 후 큐를 10cm 정도 더 밀어내는 <b>팔로우 스트로크</b>로 회전을 유지하면 세게 치지 않고도 살릴 수 있다.",
+  warn:"위 보정 설명은 <b>이 프로젝트의 물리 모델과 정확히 일치한다</b> — 밀어치기(오버스핀)는 미끄럼 구간이 짧아 회전을 훨씬 잘 보존한다. 반면 숫자표는 아직 확인되지 않았다."
+},
+{
+  id:"tokyo", name:"도쿄", en:"Tokyo System", conf:"part",
+  fam:"덧셈 계열", formula:"수구 출발점 + 1쿠션 지점 → 3쿠션 도착점",
+  pattern:["장","단","장"], patNote:"장축 → 단축 → 다시 장축",
+  use:"출발점과 1쿠션을 이어 도착점을 찾는 방식",
+  tip:"2팁 (9시 또는 3시)",
+  scale:[["척도","확인 필요"]],
+  ex:[["1적구 두께","<em>1/3</em> 기준으로 조절"]],
+  adj:"계산된 1쿠션 지점보다 <b>0.5포인트</b> 앞뒤로 굴려 보며 그날의 보정값을 잡는다. 습도가 높으면 계산보다 <b>0.3포인트</b> 짧게 겨냥한다는 실전 메모도 있다.",
+  warn:"원리·당점·두께 기준·보정 폭은 확인됐으나 <b>레일별 숫자표는 확보하지 못했다.</b>"
+},
+{
+  id:"ball", name:"볼값", en:"Ball-Value · 앞돌리기 / 옆돌리기", conf:"ok",
+  fam:"볼값 계열", formula:"1적구수 + 도착수 + 기울기(보정) = 볼값",
+  pattern:["장","단","장"], patNote:"앞돌리기 = 장-단-장. 옆돌리기도 같은 공식",
+  use:"빈쿠션이 아니라 <b>1적구를 맞히고</b> 도는 배치",
+  tip:"두께와 팁으로 볼값을 나눠 갖는다 — <b>정확도는 두께 &gt; 팁수</b>",
+  scale:[
+    ["1적구수","첫 쿠션 접촉 위치로 판단"],
+    ["도착수","최종 목표 지점의 위치 값"],
+    ["기울기","당점 차이 한 칸 = <em>+2</em>, 반 칸 = <em>+1</em> (반대 방향이면 음수)"]
+  ],
+  ex:[["볼값 6이면","두께 5 + 팁 1 <b>또는</b> 두께 4 + 팁 2 중 선택"]],
+  adj:"1적구 값이 <b>4 이상</b>이면 도착수 <b>−1</b>. 1적구가 <b>쿠션에 붙어</b> 있으면 <b>−1</b> 추가. 1적구 값이 극단적으로 작으면 3쿠션수를 따로 보정.",
+  warn:"공식·기울기 환산·보정 규칙이 모두 확인됐다. <b>이 표에서 가장 완성도가 높다.</b> 다만 1적구수·도착수의 절대 눈금은 배치별로 읽는 값이라 표로 고정되지 않는다."
+},
+{
+  id:"etc", name:"그 밖에", en:"Other named systems", conf:"none",
+  fam:"—", formula:"—",
+  pattern:null, patNote:"",
+  use:"자료에 이름만 등장하고 계산법은 확보하지 못한 것들",
+  tip:"—",
+  scale:[
+    ["하프 시스템","이름만"],["로드리게스 시스템","이름만"],["일출일몰 시스템","이름만"],
+    ["더블레일 시스템","이름만"],["50 · 30 · 15 시스템","이름만"],
+    ["35 시스템 / 35와 2분의 1","파이브앤하프와 섞어 쓰는 3뱅크 응용이 있다는 언급"],
+    ["크로스테이블 · 엔드레일","경쟁 앱에 수록된 시스템 목록에 등장"]
+  ],
+  ex:[],
+  adj:"—",
+  warn:"이 칸은 <b>채워야 할 목록</b>이지 자료가 아니다. 교재를 확보하는 대로 위 탭들과 같은 형식으로 옮겨 적는다."
+}
+];
+
+const CONF={ok:{t:"확인",c:"b-ok",dot:"var(--ok)"},
+            part:{t:"부분",c:"b-part",dot:"var(--accent)"},
+            none:{t:"이름만",c:"b-none",dot:"var(--pend)"}};
+
+/* 미니 도면: 쿠션 순서 스케치 */
+const NS="http://www.w3.org/2000/svg";
+function E(t,a,x){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);
+  if(x!==undefined)e.textContent=x;return e;}
+function miniSVG(pattern){
+  const s=E("svg",{viewBox:"-16 -16 192 112",role:"img","aria-label":"쿠션 순서 도식"});
+  s.appendChild(E("rect",{x:-16,y:-16,width:192,height:112,rx:5,fill:"var(--rail)"}));
+  s.appendChild(E("rect",{x:0,y:0,width:160,height:80,fill:"var(--felt)"}));
+  for(let i=1;i<8;i++) s.appendChild(E("circle",{cx:i*20,cy:-8,r:1.8,fill:"var(--pearl)",opacity:".75"}));
+  for(let i=1;i<8;i++) s.appendChild(E("circle",{cx:i*20,cy:88,r:1.8,fill:"var(--pearl)",opacity:".75"}));
+  for(let i=1;i<4;i++) s.appendChild(E("circle",{cx:-8,cy:i*20,r:1.8,fill:"var(--pearl)",opacity:".75"}));
+  for(let i=1;i<4;i++) s.appendChild(E("circle",{cx:168,cy:i*20,r:1.8,fill:"var(--pearl)",opacity:".75"}));
+  if(!pattern) return s;
+  const P={ "장단장":[[118,80],[52,0],[0,42],[46,80]],
+            "장장단":[[120,80],[64,0],[24,80],[0,58]],
+            "단장단":[[160,58],[92,0],[0,36]] };
+  const key=pattern.join("");
+  const pts=P[key]||P["장단장"];
+  s.appendChild(E("polyline",{points:pts.map(p=>p.join(",")).join(" "),fill:"none",
+    stroke:"var(--accent)","stroke-width":2,"stroke-linejoin":"round","stroke-dasharray":"5 3.5",opacity:".9"}));
+  pts.slice(1).forEach((p,i)=>{
+    s.appendChild(E("circle",{cx:p[0],cy:p[1],r:6.4,fill:"var(--accent)"}));
+    s.appendChild(E("text",{x:p[0],y:p[1]+2.6,"text-anchor":"middle","font-size":"7.6",
+      "font-family":"Archivo, sans-serif","font-weight":"700",fill:"var(--rail)"},i+1));
+  });
+  s.appendChild(E("circle",{cx:pts[0][0],cy:pts[0][1],r:5,fill:"#fff",stroke:"var(--rail)","stroke-width":1.4}));
+  return s;
+}
+
+/* 렌더 */
+const tabs=document.getElementById("tabs"), panels=document.getElementById("panels");
+SYS.forEach((sys,idx)=>{
+  const cf=CONF[sys.conf];
+  const b=document.createElement("button");
+  b.className="tab"; b.type="button"; b.setAttribute("role","tab");
+  b.setAttribute("aria-selected",idx===0?"true":"false");
+  b.setAttribute("aria-controls","p-"+sys.id); b.id="t-"+sys.id;
+  b.innerHTML='<span class="dot" style="background:'+cf.dot+'"></span>'+sys.name;
+  b.addEventListener("click",()=>select(idx));
+  tabs.appendChild(b);
+
+  const p=document.createElement("div");
+  p.className="card panel"; p.id="p-"+sys.id; p.setAttribute("role","tabpanel");
+  p.setAttribute("aria-labelledby","t-"+sys.id);
+  if(idx!==0) p.hidden=true;
+
+  let h='<div class="syshead"><div class="t"><h3>'+sys.name+
+    ' <span class="b '+cf.c+'">'+cf.t+'</span></h3><div class="en">'+sys.en+
+    (sys.fam!=="—"?" · "+sys.fam:"")+'</div></div></div>';
+  if(sys.formula!=="—") h+='<div class="formula">'+sys.formula+'</div>';
+
+  h+='<div class="grid2"><div>';
+  h+='<div class="tblwrap"><table><thead><tr><th>값</th><th>척도 / 내용</th></tr></thead><tbody>';
+  sys.scale.forEach(r=>{h+="<tr><th>"+r[0]+"</th><td style='white-space:normal;color:var(--muted)'>"+r[1]+"</td></tr>";});
+  h+="</tbody></table></div>";
+  if(sys.ex.length){
+    h+='<div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>예시</th><th>값</th></tr></thead><tbody>';
+    sys.ex.forEach(r=>{h+="<tr><th style='white-space:normal'>"+r[0]+"</th><td style='white-space:normal;color:var(--muted)'>"+r[1]+"</td></tr>";});
+    h+="</tbody></table></div>";
+  }
+  h+='</div><div>';
+  if(sys.pattern){
+    h+='<div class="mini" id="m-'+sys.id+'"></div>';
+    h+='<div class="cap" style="font-family:\'IBM Plex Mono\',monospace;font-size:10px;color:var(--dim);text-align:center;margin-top:6px">'+
+       sys.pattern.join(" → ")+' · 패턴 예시 (계산 결과 아님)</div>';
+  }
+  h+='<div class="kv" style="margin-top:'+(sys.pattern?"14px":"0")+'">'+
+     '<div><span class="k">쓰는 곳</span><span class="v">'+sys.use+'</span></div>'+
+     '<div><span class="k">당점</span><span class="v">'+sys.tip+'</span></div>'+
+     '<div><span class="k">보정</span><span class="v">'+sys.adj+'</span></div>'+
+     '</div></div></div>';
+  h+='<div class="warn">'+sys.warn+'</div>';
+  p.innerHTML=h;
+  panels.appendChild(p);
+  if(sys.pattern) p.querySelector("#m-"+sys.id).appendChild(miniSVG(sys.pattern));
+});
+function select(i){
+  [...tabs.children].forEach((b,j)=>b.setAttribute("aria-selected",j===i?"true":"false"));
+  [...panels.children].forEach((p,j)=>{p.hidden=j!==i;});
+}
+tabs.addEventListener("keydown",e=>{
+  const cur=[...tabs.children].findIndex(b=>b.getAttribute("aria-selected")==="true");
+  if(e.key==="ArrowRight"){e.preventDefault();const n=(cur+1)%SYS.length;select(n);tabs.children[n].focus();}
+  if(e.key==="ArrowLeft"){e.preventDefault();const n=(cur-1+SYS.length)%SYS.length;select(n);tabs.children[n].focus();}
+});
+})();
+</script>
