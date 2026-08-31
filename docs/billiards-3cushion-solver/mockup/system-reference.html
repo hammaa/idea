@@ -116,6 +116,11 @@ td.num{text-align:right; color:var(--text)}
 .kv .v{color:var(--text)}
 .kv .v em{font-style:normal; font-family:"IBM Plex Mono",monospace; color:var(--accent)}
 
+.bigtbl{background:var(--rail); border-radius:var(--r); padding:12px; overflow-x:auto}
+.bigtbl svg{display:block; width:100%; min-width:520px; height:auto}
+.lg{display:flex; gap:16px; flex-wrap:wrap; margin-top:12px; font-size:12.5px}
+.lg span{display:flex; align-items:center; gap:6px; color:var(--muted)}
+.lg i{width:11px; height:11px; border-radius:2px; flex:0 0 auto}
 .origin{background:var(--surface-2); border:1px solid var(--line);
   border-left:2px solid var(--cool); border-radius:var(--r);
   padding:12px 14px; margin:0 0 14px; font-size:13px; color:var(--muted); line-height:1.75}
@@ -189,6 +194,53 @@ ol.check b{color:var(--text); font-weight:500}
     <b>그래서 "3포인트에 놓고"라는 말은 시스템을 말하기 전엔 위치만 가리킨다.</b>
     같은 자리가 파이브앤하프에서는 수구수 35이고, 3쿠션수로는 30이다.
     <b>숫자를 말할 때는 어느 시스템의 어느 값인지를 같이 말해야 한다.</b>
+  </div>
+</div>
+
+<!-- ========== 눈금 도면 ========== -->
+<div class="card">
+  <h2>수구수 50은 어디인가 — 파이브앤하프 눈금 도면 <span class="b b-part">출처 2건 · 당구대 검증 전</span></h2>
+  <p style="color:var(--muted); font-size:14px; margin-bottom:14px; max-width:74ch">
+    <b>세 눈금이 서로 다른 쿠션에, 서로 다른 방향으로, 서로 다른 간격으로 붙어 있다.</b>
+    그래서 "50"이라는 말만으로는 어디인지 알 수 없다 — 아래가 그 배치다.
+  </p>
+  <div class="bigtbl"><svg id="fhmap" viewBox="-150 -170 1900 1170" role="img"
+    aria-label="파이브앤하프 수구수·1쿠션값·3쿠션값 눈금 배치도"></svg></div>
+  <div class="lg">
+    <span><i style="background:var(--accent)"></i>수구수 (출발값)</span>
+    <span><i style="background:var(--cool)"></i>1쿠션값 (칠 곳)</span>
+    <span><i style="background:var(--ok)"></i>3쿠션값 (도착)</span>
+    <span style="font-family:'IBM Plex Mono',monospace;color:var(--dim)">◇ 프레임 점</span>
+  </div>
+
+  <div class="tblwrap" style="margin-top:16px"><table>
+    <thead><tr><th>눈금</th><th>0 또는 기준이 어디인가</th><th>어느 쪽으로 · 얼마씩</th></tr></thead>
+    <tbody>
+      <tr><th style="color:var(--accent)">수구수</th>
+        <td style="white-space:normal;color:var(--text)"><b>50 = 수구가 기대는 장쿠션의, 2쿠션에서 먼 쪽 코너</b></td>
+        <td style="white-space:normal;color:var(--muted)">장쿠션 따라 2쿠션 쪽으로 <b>한 칸당 −5</b> (45·40·35·30…)<br>단쿠션 따라 올라가며 <b>한 칸당 +10</b> (60·70), <b>70 넘으면 반 칸당 +10</b> (80·90)</td></tr>
+      <tr><th style="color:var(--cool)">1쿠션값</th>
+        <td style="white-space:normal;color:var(--text)"><b>0 = 건너편 장쿠션의, 2쿠션 쪽 코너</b></td>
+        <td style="white-space:normal;color:var(--muted)">2쿠션 반대쪽으로 <b>한 칸당 +10</b>, <b>50부터 반 칸당 +10</b></td></tr>
+      <tr><th style="color:var(--ok)">3쿠션값</th>
+        <td style="white-space:normal;color:var(--text)"><b>0 = 수구수 50의 <u>반대쪽</u> 코너</b> — 같은 장쿠션이다</td>
+        <td style="white-space:normal;color:var(--muted)">수구수 50 쪽으로 <b>한 칸당 +10</b>, <b>40부터 반 칸당 +10</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="warn">
+    <b>가장 헷갈리는 지점 — 하나의 장쿠션에 눈금이 두 개 붙어 있다.</b>
+    수구수와 3쿠션값이 <b>같은 쿠션</b>을 <b>반대 방향</b>에서, <b>다른 간격</b>(5 vs 10)으로 읽는다.
+    그래서 같은 자리가 수구수로는 30이고 3쿠션값으로는 40이 된다.
+    <b>숫자를 말할 때 어느 눈금인지 붙이지 않으면 반드시 어긋난다.</b>
+  </div>
+
+  <div class="warn" style="border-left-color:var(--ok)">
+    <b>기하 검증 — 이 표는 자로 재서는 확인할 수 없다.</b>
+    위 도면의 기준선 <b>50 → 1쿠션 30 → 3쿠션 20</b>은 순수 기하 반사로 계산해도 정확히 3쿠션 20에 떨어진다(도면의 실선).
+    그런데 1쿠션 20이면 기하는 40인데 공식은 30, 1쿠션 10이면 기하 80·공식 40으로 <b>어긋난다.</b>
+    <b>당연하다 — 시스템은 3팁 순회전을 전제하고, 회전 먹은 공은 빛처럼 반사하지 않는다.</b>
+    이 표가 맞는지는 <b>당구대에서만 판명된다.</b>
   </div>
 </div>
 
@@ -518,6 +570,56 @@ SYS.forEach((sys,idx)=>{
   panels.appendChild(p);
   if(sys.pattern) p.querySelector("#m-"+sys.id).appendChild(miniSVG(sys.pattern));
 });
+
+/* ── 파이브앤하프 눈금 배치도 ── */
+(function(){
+  const sv=document.getElementById("fhmap"); if(!sv) return;
+  const K=20, W=80*K, H=40*K;                    // 1포인트 = 20 단위
+  const X=v=>v*K, Y=v=>H-v*K;                    // 포인트 → svg (y 반전)
+  const T=(x,y,t,fill,size,anchor)=>E("text",{x:x,y:y,"text-anchor":anchor||"middle",
+    "font-size":size||34,"font-family":"IBM Plex Mono, monospace","font-weight":"500",fill:fill},t);
+  sv.appendChild(E("rect",{x:-150,y:-170,width:W+300,height:H+340,rx:22,fill:"var(--rail)"}));
+  sv.appendChild(E("rect",{x:-46,y:-46,width:W+92,height:H+92,rx:6,fill:"var(--rail-hi)"}));
+  sv.appendChild(E("rect",{x:0,y:0,width:W,height:H,fill:"var(--felt)"}));
+  sv.appendChild(E("rect",{x:0,y:0,width:W,height:H,fill:"none",stroke:"var(--felt-lo)","stroke-width":6}));
+  for(let i=1;i<8;i++){ sv.appendChild(E("circle",{cx:X(i*10),cy:-24,r:9,fill:"var(--pearl)"}));
+                        sv.appendChild(E("circle",{cx:X(i*10),cy:H+24,r:9,fill:"var(--pearl)"})); }
+  for(let i=1;i<4;i++){ sv.appendChild(E("circle",{cx:-24,cy:Y(i*10),r:9,fill:"var(--pearl)"}));
+                        sv.appendChild(E("circle",{cx:W+24,cy:Y(i*10),r:9,fill:"var(--pearl)"})); }
+
+  /* 1쿠션값 — 상단 장쿠션, 좌상단 코너가 0, 오른쪽으로 */
+  [[0,0],[10,10],[20,20],[30,30],[40,40],[50,50],[55,60],[60,70],[65,80],[70,90]].forEach(([px,v])=>{
+    sv.appendChild(E("line",{x1:X(px),y1:-8,x2:X(px),y2:10,stroke:"var(--cool)","stroke-width":4}));
+    sv.appendChild(T(X(px),-72,v,"var(--cool)",v>=60?28:34));});
+  sv.appendChild(T(X(40),-124,"1쿠션값  (칠 곳)","var(--cool)",32));
+
+  /* 수구수 — 하단 장쿠션 바깥 + 우측 단쿠션 바깥 */
+  [[80,50],[70,45],[60,40],[50,35],[40,30],[30,25],[20,20],[10,15],[0,10]].forEach(([px,v])=>{
+    sv.appendChild(T(X(px),H+96,v,"var(--accent)",34));});
+  [[0,50],[10,60],[20,70],[25,80],[30,90]].forEach(([py,v])=>{
+    if(py>0) sv.appendChild(T(W+108,Y(py)+12,v,"var(--accent)",30));});
+  sv.appendChild(T(X(40),H+152,"수구수  (출발값) — 하단 장쿠션 + 우측 단쿠션","var(--accent)",32));
+
+  /* 3쿠션값 — 같은 하단 장쿠션, 안쪽. 좌하단이 0 */
+  [[0,0],[10,10],[20,20],[30,30],[40,40],[45,50],[50,60],[55,70]].forEach(([px,v])=>{
+    sv.appendChild(E("line",{x1:X(px),y1:H-14,x2:X(px),y2:H+6,stroke:"var(--ok)","stroke-width":4}));
+    sv.appendChild(T(X(px),H-34,v,"var(--ok)",v>=50?28:34));});
+  sv.appendChild(T(X(28),H-84,"3쿠션값 (도착) — 같은 쿠션, 반대 방향","var(--ok)",30));
+
+  /* 기준선 50 → 1쿠션 30 → 3쿠션 20 (기하 반사 실측) */
+  const path=[[80,0],[30,40],[0,16],[20,0]];
+  sv.appendChild(E("polyline",{points:path.map(p=>X(p[0])+","+Y(p[1])).join(" "),
+    fill:"none",stroke:"var(--pearl)","stroke-width":7,"stroke-linejoin":"round",opacity:".92"}));
+  path.slice(1).forEach((p,i)=>{
+    sv.appendChild(E("circle",{cx:X(p[0]),cy:Y(p[1]),r:19,fill:"var(--pearl)"}));
+    sv.appendChild(E("text",{x:X(p[0]),y:Y(p[1])+11,"text-anchor":"middle","font-size":"30",
+      "font-family":"Archivo, sans-serif","font-weight":"700",fill:"var(--rail)"},i+1));});
+  sv.appendChild(E("circle",{cx:X(80),cy:Y(0),r:17,fill:"#fff",stroke:"var(--rail)","stroke-width":4}));
+  sv.appendChild(E("circle",{cx:X(80),cy:Y(0),r:34,fill:"none",stroke:"var(--accent)","stroke-width":5}));
+  sv.appendChild(T(X(66),Y(7),"수구수 50 = 여기","var(--accent)",34));
+  sv.appendChild(T(X(46),Y(26),"기준선  50 − 30 = 20","var(--pearl)",30));
+})();
+
 function select(i){
   [...tabs.children].forEach((b,j)=>b.setAttribute("aria-selected",j===i?"true":"false"));
   [...panels.children].forEach((p,j)=>{p.hidden=j!==i;});
