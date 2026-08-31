@@ -172,7 +172,7 @@ footer h3{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
 
 <div class="wrap">
 <header>
-  <div class="eyebrow">3-Cushion · 국제식 대대 2844 × 1422 · 1다이아 = 355.5 mm</div>
+  <div class="eyebrow">3-Cushion · 국제식 대대 2844 × 1422 · 프레임 점 1칸 = 10 포인트</div>
   <h1>내 큐로 계산하면 답이 달라진다</h1>
   <p class="sub">
     같은 배치라도 당점, 타법, 큐의 스쿼트 특성, 대의 마찰, 두께, 세기, 수구–적구 거리가 바뀌면
@@ -196,9 +196,16 @@ footer h3{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
         <span><i style="border-top:2px solid var(--accent)"></i>스쿼트 반영 실제 출발</span>
       </div>
       <p class="note">
-        <b>다이아 눈금:</b> 코너가 0, 장쿠션 0–8 · 단쿠션 0–4. <b>1다이아 = 355.5 mm</b> (2844÷8 = 1422÷4).
+        <b>포인트 표기:</b> 3쿠션에서 쓰는 방식대로 <b>프레임 점 1칸 = 10 포인트</b>.
+        장쿠션 <b>0–80</b> · 단쿠션 <b>0–40</b>, 코너가 0. 반 칸이 5, <b>1포인트 = 35.55 mm</b> (355.5 ÷ 10).
         도면의 ◇는 실제 테이블처럼 <b>레일(프레임) 위</b>, 쿠션 노즈에서 약 <b>94 mm</b> 바깥에 있다.
-        표에 찍히는 값은 <b>공이 쿠션 천에 닿는 지점</b>을 다이아 눈금으로 읽은 것이다.
+        표에 찍히는 값은 <b>공이 쿠션 천에 닿는 지점</b>을 이 눈금으로 읽은 것이다.
+      </p>
+      <p class="note">
+        ⚠️ <b>이건 위치를 읽는 일반 눈금이지 시스템 숫자가 아니다.</b>
+        파이브앤하프의 수구수·1쿠션수·3쿠션수는 <b>레일마다 척도가 다르다</b> —
+        수구수는 코너 50에서 장쿠션 쪽으로 한 칸당 5씩 줄고 단쿠션 쪽으로 한 칸당 10씩 는다.
+        그 표는 아직 전사·검증하지 않았다. <span class="b b-pend">미확정</span>
       </p>
     </div>
 
@@ -241,12 +248,12 @@ footer h3{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
         <div class="ctrl">
           <label for="c-pos">수구 위치 <span style="color:var(--dim)">하단 장쿠션</span></label>
           <span class="val" id="v-pos"></span>
-          <input type="range" id="c-pos" min="0" max="4" step="0.25" value="1">
+          <input type="range" id="c-pos" min="0" max="40" step="1" value="10">
         </div>
         <div class="ctrl">
           <label for="c-aim">1쿠션 조준점 <span style="color:var(--dim)">상단 장쿠션</span></label>
           <span class="val" id="v-aim"></span>
-          <input type="range" id="c-aim" min="1" max="7.5" step="0.25" value="5">
+          <input type="range" id="c-aim" min="10" max="75" step="1" value="50">
         </div>
         <div class="split">
           <div class="ctrl">
@@ -367,7 +374,7 @@ footer h3{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
       <tr><th style="text-align:left">좌우 회전</th>
         <th>1쿠션</th><th>2쿠션</th><th>3쿠션</th><th>4쿠션</th><th>5쿠션</th><th>6쿠션</th><th>7쿠션</th><th>8쿠션</th></tr>
       <tr><th style="text-align:left;font-size:9.5px;border:0;padding-top:0">단위</th>
-        <th colspan="8" style="text-align:left;font-size:9.5px;border:0;padding-top:0;font-weight:400;text-transform:none;letter-spacing:0">장/단 = 장쿠션·단쿠션 · 숫자 = 다이아 눈금 · 괄호 = 0팁 대비 이동</th></tr>
+        <th colspan="8" style="text-align:left;font-size:9.5px;border:0;padding-top:0;font-weight:400;text-transform:none;letter-spacing:0">장/단 = 장쿠션·단쿠션 · 숫자 = 포인트 (프레임 점 1칸 = 10) · 괄호 = 0팁 대비 이동</th></tr>
     </thead>
     <tbody id="sens"></tbody>
   </table></div>
@@ -403,7 +410,7 @@ footer h3{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
   <div class="fl">
     <div class="fi"><strong><span class="b b-calc">계산</span> 확정된 공식</strong>
       두께↔절단각 (sinθ=1−f) · 스쿼트각 (피벗 모델) · <b>당점→오버스핀 (ω/v=5b/2R²)</b> ·
-      <b>미스큐 한계 |b|≤R/2</b> · 미끄럼 전이 거리 · 8쿠션 기하 반사 · 90°/30° 법칙</div>
+      <b>미스큐 한계 |b|≤R/2</b> · 미끄럼 전이 거리 · 8쿠션 기하 반사 · 90°/30° 법칙 · <b>포인트 눈금 (점 1칸 = 10)</b></div>
     <div class="fi"><strong><span class="b b-meas">실측</span> 문헌값</strong>
       피벗 길이 9.5" / 13" / 19" — 단 <b>풀 기준</b>이라 캐롬은 다시 재야 한다.
       쿠션 반발계수 0.818 (스누커). 팁 접촉 시간 약 0.001초 — <b>팔로우스루는 공에 직접 영향을 주지 못한다</b></div>
@@ -424,6 +431,7 @@ footer h3{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
 (function(){
 "use strict";
 const G=9.8, W=2844, H=1422, R=30.75, D=355.5, MM_PER_TIP=5, SWERVE_C=6.0;
+const PT=D/10;              // 1포인트 = 프레임 점 1칸의 1/10 = 35.55 mm
 const MISCUE=R/2;                       // 미스큐 한계 오프셋 15.375mm
 const NATURAL=0.4*R;                    // 자연 구름 타점 12.3mm
 const E_CUSHION=0.85, MU_ROLL=0.010, K_SLIDE=0.35, K_ROLL=0.06, SPIN_KEEP=0.75;
@@ -486,16 +494,16 @@ function draw(base,shot){
       s.appendChild(el("circle",{cx:x,cy:-94,r:22,fill:"var(--pearl)"}));
       s.appendChild(el("circle",{cx:x,cy:H+94,r:22,fill:"var(--pearl)"}));
     }
-    s.appendChild(el("text",Object.assign({x:x,y:-140},lbl),i));
-    s.appendChild(el("text",Object.assign({x:x,y:H+180},lbl),i));
+    s.appendChild(el("text",Object.assign({x:x,y:-140},lbl),i*10));
+    s.appendChild(el("text",Object.assign({x:x,y:H+180},lbl),i*10));
   }
   for(let i=0;i<=4;i++){ const y=i*D;
     if(i>0&&i<4){
       s.appendChild(el("circle",{cx:-94,cy:y,r:22,fill:"var(--pearl)"}));
       s.appendChild(el("circle",{cx:W+94,cy:y,r:22,fill:"var(--pearl)"}));
     }
-    s.appendChild(el("text",Object.assign({x:-155,y:y+20},lbl),i));
-    s.appendChild(el("text",Object.assign({x:W+155,y:y+20},lbl),i));
+    s.appendChild(el("text",Object.assign({x:-175,y:y+20},lbl),i*10));
+    s.appendChild(el("text",Object.assign({x:W+175,y:y+20},lbl),i*10));
   }
   const poly=p=>p.map(q=>q.x.toFixed(1)+","+q.y.toFixed(1)).join(" ");
   s.appendChild(el("polyline",{points:poly(base.pts),fill:"none",stroke:"var(--pearl)","stroke-width":9,
@@ -564,13 +572,13 @@ $("c-preset").addEventListener("change",()=>{
 
 /* ---- render ---- */
 function render(){
-  const posD=+$("c-pos").value, aimD=+$("c-aim").value, thick=+$("c-thick").value,
+  const posP=+$("c-pos").value, aimP=+$("c-aim").value, thick=+$("c-thick").value,
         dist=+$("c-dist").value, elev=+$("c-elev").value, v=+$("c-speed").value,
         pivot=+$("c-pivot").value, mu=+$("c-mu").value;
   const s0=spinRatio(tipY), tipsH=tipX/MM_PER_TIP, tipsV=tipY/MM_PER_TIP;
 
-  $("v-pos").textContent=posD.toFixed(2)+" 다이아";
-  $("v-aim").textContent=aimD.toFixed(2)+" 다이아";
+  $("v-pos").textContent=posP+" 포인트";
+  $("v-aim").textContent=aimP+" 포인트";
   $("v-thick").textContent=thick+"/8";
   $("v-dist").textContent=dist.toFixed(1)+" m";
   $("v-elev").textContent=elev.toFixed(1)+"°";
@@ -594,7 +602,7 @@ function render(){
   $("t-state").innerHTML='<span style="color:'+tcol+'">'+tstate+"</span>";
 
   /* path */
-  const sx=posD*D, sy=R, tx=aimD*D, ty=H-R;
+  const sx=posP*PT, sy=R, tx=aimP*PT, ty=H-R;
   const aim=Math.atan2(ty-sy,tx-sx);
   const sq=squirtAngle(tipX,pivot);
   const base=path(sx,sy,aim,8), shot=path(sx,sy,aim-sq,8);
@@ -675,7 +683,7 @@ function render(){
       else{
         const d=h[i].dia, dd=ref[i]?d-ref[i].dia:0;
         td.innerHTML='<span style="color:var(--dim);font-size:10px">'+(h[i].rail==="long"?"장":"단")+"</span> "+
-          d.toFixed(2)+(t===0?"":'<span style="color:var(--dim)"> ('+(dd>=0?"+":"−")+Math.abs(dd).toFixed(2)+")</span>");
+          (d*10).toFixed(1)+(t===0?"":'<span style="color:var(--dim)"> ('+(dd>=0?"+":"−")+Math.abs(dd*10).toFixed(1)+")</span>");
       }
       tr.appendChild(td);
     }
