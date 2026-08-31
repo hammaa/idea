@@ -121,6 +121,22 @@ td.num{text-align:right; color:var(--text)}
   padding:11px 13px; font-size:12.5px; color:var(--muted); margin-top:14px; line-height:1.65}
 .warn b{color:var(--text); font-weight:500}
 
+/* 원리 */
+.pr{display:flex; flex-direction:column; gap:0}
+.pr > div{display:grid; grid-template-columns:34px 1fr; gap:14px;
+  padding:16px 0; border-top:1px solid var(--line)}
+.pr > div:first-child{border-top:0; padding-top:2px}
+.pr .n{font-family:Archivo,sans-serif; font-weight:700; font-size:20px;
+  color:var(--accent-dim); line-height:1.1; font-variant-numeric:tabular-nums}
+.pr h3{font-family:"IBM Plex Sans KR",sans-serif; font-size:16px; font-weight:600;
+  margin:0 0 7px; color:var(--text); line-height:1.4; text-wrap:balance}
+.pr p{font-size:13.5px; color:var(--muted); margin:0 0 8px; line-height:1.75; max-width:74ch}
+.pr p:last-child{margin-bottom:0}
+.pr b{color:var(--text); font-weight:500}
+.pr .eq{font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--accent);
+  background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r);
+  padding:9px 12px; margin:9px 0; display:block; overflow-x:auto}
+.pr .pt{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--cool)}
 .note{font-size:12px; color:var(--dim); line-height:1.65; margin:12px 0 0}
 .note b{color:var(--muted); font-weight:400}
 
@@ -167,6 +183,85 @@ ol.check b{color:var(--text); font-weight:500}
     <b>그래서 "3포인트에 놓고"라는 말은 시스템을 말하기 전엔 위치만 가리킨다.</b>
     같은 자리가 파이브앤하프에서는 수구수 35이고, 3쿠션수로는 30이다.
     <b>숫자를 말할 때는 어느 시스템의 어느 값인지를 같이 말해야 한다.</b>
+  </div>
+</div>
+
+<!-- ========== 원리 ========== -->
+<div class="card">
+  <h2>원리 — 시스템은 대체 무엇을 하는가</h2>
+  <p style="color:var(--muted); font-size:14px; margin-bottom:18px; max-width:74ch">
+    공식만 외우면 왜 보정이 필요한지, 왜 당점이 정해져 있는지, 왜 시스템이 여러 개인지 알 수 없다.
+    아래 여섯 단계가 그 답이다 — <b style="color:var(--text);font-weight:500">순서대로 읽어야 이어진다.</b>
+  </p>
+  <div class="pr">
+
+    <div><div class="n">1</div><div>
+      <h3>시스템이 하는 일은 「궤적 관계를 직선으로 펴는 것」이다</h3>
+      <p>한 자리에서 출발해 1쿠션을 조금씩 옮겨 치면, 3쿠션 도착점도 따라서 한 방향으로 움직인다.
+        그 관계는 <b>곡선이지만 단조롭다</b> — 1쿠션을 왼쪽으로 옮기면 도착점도 반드시 한쪽으로 간다.</p>
+      <p>시스템의 숫자는 그 곡선 관계를 <b>기울기 ±1의 직선으로 펴기 위한 좌표 변환</b>이다.
+        직선으로 펴 놓으면 계산이 이렇게 끝난다:</p>
+      <span class="eq">수구수 − 3쿠션수 = 1쿠션수&nbsp;&nbsp;&nbsp;또는&nbsp;&nbsp;&nbsp;수구수 + 1쿠션수 = 3쿠션수</span>
+      <p><b>곱셈도 삼각함수도 없는 이유가 이것이다.</b> 어려운 계산을 눈금 안에 미리 숨겨 놨기 때문이다.</p>
+    </div></div>
+
+    <div><div class="n">2</div><div>
+      <h3>그래서 눈금이 레일마다 다르다 — 그게 시스템의 알맹이다</h3>
+      <p>당구대의 기하는 균등하지 않다. 균등한 눈금(칸마다 10)으로는 위의 직선이 안 나온다.
+        그래서 <b>눈금 자체를 왜곡해서</b> 직선이 되게 만든다.</p>
+      <p class="pt">파이브앤하프 — 수구수는 칸당 5, 1쿠션수는 칸당 10, 게다가 1쿠션수는 5를 넘으면 반 칸당 10으로 더 압축</p>
+      <p class="pt">플러스 — 수구수·3쿠션수는 칸당 10인데, 1쿠션수(단쿠션)는 코너 쪽이 압축 (20 → 30 → 40이 반 칸 간격)</p>
+      <p><b>눈금의 일그러진 모양이 곧 그 시스템이 담고 있는 물리 지식이다.</b>
+        수십 년간 사람들이 쳐 보면서 찾아낸 보정을 숫자 배치에 새겨 넣은 것이고,
+        그래서 시스템을 배운다는 건 공식이 아니라 <b>눈금을 외우는 일</b>이다.</p>
+    </div></div>
+
+    <div><div class="n">3</div><div>
+      <h3>당점이 규격으로 정해져 있는 이유</h3>
+      <p>1번의 직선 관계는 <b>특정 회전량에서만 성립</b>한다. 팁을 하나 더 주면 지도 전체가 통째로 이동한다.
+        그래서 시스템마다 당점이 딸려 온다.</p>
+      <p class="pt">파이브앤하프 2~3팁 · 플러스 상단 2팁 · 플러스투 중단 3팁 · 도쿄 2팁(9시/3시)</p>
+      <p><b>당점은 권장사항이 아니라 전제조건이다.</b> 다른 당점으로 치면서 계산이 안 맞는다고 하는 건,
+        다른 자로 재 놓고 눈금이 틀렸다고 하는 것과 같다.</p>
+    </div></div>
+
+    <div><div class="n">4</div><div>
+      <h3>보정은 결함이 아니라 「근사가 깨지는 지점의 지도」다</h3>
+      <p>직선으로 펴는 건 <b>근사</b>다. 근사에는 유효 범위가 있고, 범위를 벗어나면 어긋난다.</p>
+      <p class="pt">파이브앤하프 — 수구수 <b style="color:var(--muted);font-weight:400">50</b>이 기준선. 작으면 더하고 크면 빼는 보정</p>
+      <p class="pt">도쿄 — 계산값보다 <b style="color:var(--muted);font-weight:400">0.5포인트</b> 앞뒤로 굴려 그날의 값을 잡고, 습도가 높으면 <b style="color:var(--muted);font-weight:400">0.3포인트</b> 짧게</p>
+      <p class="pt">빈쿠션 — 두 칸당 <b style="color:var(--muted);font-weight:400">2.5</b></p>
+      <p>보정값이 <b>대마다·날마다 다른 것도 당연하다</b> — 눈금은 어떤 표준 테이블에서 맞춰진 것이고,
+        지금 치는 대의 천과 쿠션은 그것과 다르기 때문이다.</p>
+    </div></div>
+
+    <div><div class="n">5</div><div>
+      <h3>뺄셈과 덧셈은 같은 직선의 다른 표현이다</h3>
+      <span class="eq">수구수 − 3쿠션수 = 1쿠션수&nbsp;&nbsp;⟺&nbsp;&nbsp;수구수 = 1쿠션수 + 3쿠션수</span>
+      <p>이항하면 같은 식이다. 부호가 갈리는 건 <b>궤적의 방향과 어느 레일에서 값을 읽느냐</b>가 다르기 때문이다.</p>
+      <p>실전에서 갈리는 건 <b>무엇을 미지수로 두느냐</b>다.
+        <b>뺄셈 계열</b>은 도착점을 정해 놓고 칠 곳을 <b>역산</b>하고,
+        <b>덧셈 계열</b>은 칠 곳을 보고 도착점을 <b>예측</b>한다.
+        같은 수학인데 쓰는 상황이 반대다.</p>
+    </div></div>
+
+    <div><div class="n">6</div><div>
+      <h3>그래서 시스템이 여러 개일 수밖에 없다</h3>
+      <p>하나의 직선화는 <b>하나의 배치 계열</b>에서만 유효하다.
+        쿠션 순서가 바뀌면 궤적의 기하가 통째로 달라지고, 그러면 다른 눈금이 필요하다.</p>
+      <p class="pt">장 → 단 → 장 &nbsp;=&nbsp; 파이브앤하프 · 도쿄 · 볼값(앞돌리기)</p>
+      <p class="pt">단 → 장 → 장 &nbsp;=&nbsp; 플러스 · 플러스투</p>
+      <p class="pt">장 → 장 → 단 &nbsp;=&nbsp; 리버스</p>
+      <p><b>시스템의 개수는 실전에서 자주 나오는 배치 계열의 개수다.</b>
+        새 시스템 이름을 만나면 먼저 <b>어떤 쿠션 순서인지</b>부터 보면, 어느 자리에 들어갈 물건인지 바로 알 수 있다.</p>
+    </div></div>
+
+  </div>
+  <div class="warn">
+    <b>이 원리가 이 프로젝트의 출발점이기도 하다.</b>
+    시스템은 <b>표준 테이블·표준 당점에서 맞춰진 눈금</b>이고, 당신의 큐와 당신의 대는 그것과 다르다.
+    그 차이가 몇 포인트인지 계산해 주는 것이
+    <a class="link" href="https://claude.ai/code/artifact/9fe04f42-d21d-46ed-be87-0e534cffedf9">큐 감도 계산기</a>가 하는 일이다.
   </div>
 </div>
 
@@ -242,20 +337,25 @@ const SYS=[
   warn:"숫자표 출처가 <b>1건</b>이다. 특히 수구수의 <b>장쿠션 칸당 −5 / 단쿠션 칸당 +10</b>이라는 비대칭 척도는 교재로 반드시 대조해야 한다."
 },
 {
-  id:"plus", name:"플러스", en:"Plus System", conf:"part",
+  id:"plus", name:"플러스", en:"Plus System", conf:"ok",
   fam:"덧셈 계열", formula:"수구수 + 1쿠션수 = 3쿠션수",
-  pattern:["단","장","단"], patNote:"패턴 확인 필요 — 자료마다 표기가 다르다",
-  use:"수구가 단쿠션 근처에 있고 반대편으로 넘기는 배치",
+  pattern:["단","장","장"], patNote:"단 → 장 → 장. 처음 맞는 단쿠션이 1쿠션",
+  use:"게임 중 자주 나오는 배치. <b>뱅크샷과 볼퍼스트 모두</b> 적용 가능",
   tip:"상단 2팁",
-  scale:[["수구수","확인 필요"],["1쿠션수","확인 필요"],["3쿠션수","확인 필요"]],
-  ex:[],
-  adj:"확인 필요",
-  warn:"<b>공식과 기본 당점(상단 2팁)만 확인됐다.</b> 각 레일의 숫자 배치는 아직 출처를 확보하지 못했다."
+  scale:[
+    ["수구수","장쿠션에서 읽는다. 한 포인트당 <em>10</em>"],
+    ["1쿠션수 (단쿠션)","코너와 첫 포인트 <b>사이</b>가 <em>20</em>, 첫 포인트가 <em>30</em>, 거기서 <b>반 포인트</b> 더 올라간 곳이 <em>40</em>"],
+    ["3쿠션수","<b>수구수와 같은 척도</b>. 한 포인트당 <em>10</em>"]
+  ],
+  ex:[["수구수 20에서 출발 → 도착 50","1쿠션 <em>30</em>을 맞춘다"],
+      ["오른쪽에서 출발하면","숫자가 좌우 <b>대칭</b>으로 바뀐다"]],
+  adj:"<b>볼퍼스트일 때 주의</b> — 수구수는 현재 위치가 아니라, <b>앞공을 맞춘 뒤 일직선으로 그었을 때의 장쿠션 포인트</b>를 읽는다.",
+  warn:"공식·척도·당점·예시·패턴이 모두 확보됐다. <b>다만 출처 1건이라 교재 대조는 여전히 필요하다.</b> 특히 1쿠션수가 코너 쪽에서 압축되는 구간(20 → 30 → 40)은 반 포인트 단위라 오독하기 쉽다."
 },
 {
   id:"plus2", name:"플러스 투", en:"Plus Two", conf:"part",
   fam:"덧셈 계열", formula:"수구수 + 1쿠션수 기반 — 2를 더하는 변형",
-  pattern:["단","장","단"], patNote:"패턴 확인 필요",
+  pattern:["단","장","장"], patNote:"플러스와 같은 계열 — 단 → 장 → 장 (확인 필요)",
   use:"플러스와 같은 계열이나 회전을 더 많이 주는 배치",
   tip:"중단 3팁 (3시 또는 9시)",
   scale:[["수구수","확인 필요"],["1쿠션수","확인 필요"],["3쿠션수","확인 필요"]],
@@ -335,9 +435,10 @@ function miniSVG(pattern){
   for(let i=1;i<4;i++) s.appendChild(E("circle",{cx:-8,cy:i*20,r:1.8,fill:"var(--pearl)",opacity:".75"}));
   for(let i=1;i<4;i++) s.appendChild(E("circle",{cx:168,cy:i*20,r:1.8,fill:"var(--pearl)",opacity:".75"}));
   if(!pattern) return s;
-  const P={ "장단장":[[118,80],[52,0],[0,42],[46,80]],
-            "장장단":[[120,80],[64,0],[24,80],[0,58]],
-            "단장단":[[160,58],[92,0],[0,36]] };
+  /* 기하 반사로 직접 계산한 대표 경로 — 세 패턴 모두 3쿠션까지 */
+  const P={ "장단장":[[10,77],[109,0],[160,40],[109,80]],   // 상장 → 우단 → 하장
+            "단장장":[[38,77],[0,39],[40,0],[120,80]],      // 좌단 → 상장 → 하장
+            "장장단":[[10,77],[62,0],[115,80],[160,13]] };  // 상장 → 하장 → 우단
   const key=pattern.join("");
   const pts=P[key]||P["장단장"];
   s.appendChild(E("polyline",{points:pts.map(p=>p.join(",")).join(" "),fill:"none",
@@ -386,7 +487,7 @@ SYS.forEach((sys,idx)=>{
   if(sys.pattern){
     h+='<div class="mini" id="m-'+sys.id+'"></div>';
     h+='<div class="cap" style="font-family:\'IBM Plex Mono\',monospace;font-size:10px;color:var(--dim);text-align:center;margin-top:6px">'+
-       sys.pattern.join(" → ")+' · 패턴 예시 (계산 결과 아님)</div>';
+       sys.pattern.join(" → ")+' · 1·2·3쿠션 · 기하 반사로 그린 대표 경로</div>';
   }
   h+='<div class="kv" style="margin-top:'+(sys.pattern?"14px":"0")+'">'+
      '<div><span class="k">쓰는 곳</span><span class="v">'+sys.use+'</span></div>'+
