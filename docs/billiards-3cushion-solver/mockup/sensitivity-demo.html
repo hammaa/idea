@@ -38,187 +38,144 @@ body{
 }
 .wrap{max-width:1180px; margin:0 auto; padding:28px 18px 80px}
 
-/* ---------- header ---------- */
 header{border-bottom:1px solid var(--line); padding-bottom:22px; margin-bottom:26px}
-.eyebrow{
-  font-family:Archivo,sans-serif; font-weight:600; font-size:11px;
-  letter-spacing:.18em; text-transform:uppercase; color:var(--accent);
-}
-h1{
-  font-family:Archivo,"IBM Plex Sans KR",sans-serif; font-weight:700;
+.eyebrow{font-family:Archivo,sans-serif; font-weight:600; font-size:11px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
+h1{font-family:Archivo,"IBM Plex Sans KR",sans-serif; font-weight:700;
   font-size:clamp(28px,5vw,42px); line-height:1.08; margin:.35em 0 .3em;
-  letter-spacing:-.02em; text-wrap:balance;
-}
+  letter-spacing:-.02em; text-wrap:balance}
 .sub{color:var(--muted); font-size:15px; max-width:62ch; margin:0}
-.hdr-note{
-  margin-top:16px; padding:11px 14px; border:1px solid var(--line);
+.hdr-note{margin-top:16px; padding:11px 14px; border:1px solid var(--line);
   border-left:2px solid var(--pend); background:var(--surface);
-  font-size:13px; color:var(--muted); border-radius:var(--r);
-}
+  font-size:13px; color:var(--muted); border-radius:var(--r)}
 .hdr-note b{color:var(--text); font-weight:500}
 
-/* ---------- trust badges: the signature device ---------- */
-.b{
-  display:inline-flex; align-items:center; gap:4px; vertical-align:middle;
+.b{display:inline-flex; align-items:center; gap:4px; vertical-align:middle;
   font-family:"IBM Plex Mono",monospace; font-size:9.5px; font-weight:500;
   letter-spacing:.06em; padding:1px 5px; border-radius:2px;
-  border:1px solid currentColor; white-space:nowrap; line-height:1.5;
-}
-.b-calc{color:var(--ok)}
-.b-meas{color:var(--cool)}
-.b-pend{color:var(--pend)}
+  border:1px solid currentColor; white-space:nowrap; line-height:1.5}
+.b-calc{color:var(--ok)} .b-meas{color:var(--cool)} .b-pend{color:var(--pend)}
 
-/* ---------- layout ---------- */
 .grid{display:grid; gap:18px; grid-template-columns:1fr}
 @media(min-width:980px){ .grid{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)} }
-.card{
-  background:var(--surface); border:1px solid var(--line);
-  border-radius:var(--r); padding:16px 16px 18px;
-}
-.card > h2{
-  font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
+.card{background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--r); padding:16px 16px 18px}
+.card > h2{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
   letter-spacing:.15em; text-transform:uppercase; color:var(--muted);
-  margin:0 0 14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-}
-.card > h2 .n{color:var(--accent); font-variant-numeric:tabular-nums}
+  margin:0 0 14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.card > h2 em{font-style:normal; color:var(--dim); font-weight:400; letter-spacing:0; text-transform:none}
 .stack{display:flex; flex-direction:column; gap:18px}
 
-/* ---------- table diagram ---------- */
 .felt-wrap{border-radius:var(--r); overflow:hidden; background:var(--rail)}
 svg.tbl{display:block; width:100%; height:auto}
-.legend{
-  display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;
-  font-size:11.5px; color:var(--muted); font-family:"IBM Plex Mono",monospace;
-}
+.legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;
+  font-size:11.5px; color:var(--muted); font-family:"IBM Plex Mono",monospace}
 .legend i{display:inline-block; width:18px; height:0; border-top-width:2px; margin-right:5px; vertical-align:middle}
 
-/* ---------- controls ---------- */
 .ctrls{display:flex; flex-direction:column; gap:13px}
 .ctrl{display:grid; grid-template-columns:1fr auto; gap:2px 10px; align-items:baseline}
 .ctrl label{font-size:12.5px; color:var(--muted)}
-.ctrl .val{
-  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:500;
-  color:var(--text); font-variant-numeric:tabular-nums; text-align:right;
-}
+.ctrl .val{font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:500;
+  color:var(--text); font-variant-numeric:tabular-nums; text-align:right}
 .ctrl input[type=range]{grid-column:1/-1; width:100%; margin:3px 0 0; accent-color:var(--accent)}
-.ctrl select{
-  grid-column:1/-1; width:100%; margin-top:3px; padding:6px 8px;
-  background:var(--surface-2); color:var(--text);
-  border:1px solid var(--line); border-radius:var(--r);
-  font-family:"IBM Plex Sans KR",sans-serif; font-size:13px;
-}
-input:focus-visible,select:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.ctrl select{grid-column:1/-1; width:100%; margin-top:3px; padding:6px 8px;
+  background:var(--surface-2); color:var(--text); border:1px solid var(--line);
+  border-radius:var(--r); font-family:"IBM Plex Sans KR",sans-serif; font-size:13px}
+input:focus-visible,select:focus-visible,#tipwrap:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 .split{display:grid; gap:13px; grid-template-columns:1fr 1fr}
 
-/* ---------- readouts ---------- */
+/* ---- tip picker ---- */
+.tip{display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:center}
+#tipwrap{width:158px; height:158px; touch-action:none; cursor:crosshair; border-radius:50%}
+#tipwrap svg{display:block; width:100%; height:100%}
+.tipinfo{display:flex; flex-direction:column; gap:7px; font-size:12px}
+.tipinfo div{display:flex; justify-content:space-between; gap:8px;
+  border-bottom:1px solid var(--line); padding-bottom:5px}
+.tipinfo div:last-child{border-bottom:0; padding-bottom:0}
+.tipinfo span:first-child{color:var(--muted)}
+.tipinfo span:last-child{font-family:"IBM Plex Mono",monospace; font-weight:500;
+  font-variant-numeric:tabular-nums}
+
 .ro{display:flex; flex-direction:column; gap:11px}
-.row{
-  display:grid; grid-template-columns:1fr auto; gap:10px; align-items:baseline;
-  padding-bottom:9px; border-bottom:1px solid var(--line);
-}
+.row{display:grid; grid-template-columns:1fr auto; gap:10px; align-items:baseline;
+  padding-bottom:9px; border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:0; padding-bottom:0}
 .row .k{font-size:13px; color:var(--muted)}
 .row .k small{display:block; font-size:11px; color:var(--dim); margin-top:1px}
-.row .v{
-  font-family:Archivo,sans-serif; font-weight:600; font-size:19px;
-  font-variant-numeric:tabular-nums; letter-spacing:-.01em; white-space:nowrap;
-}
+.row .v{font-family:Archivo,sans-serif; font-weight:600; font-size:19px;
+  font-variant-numeric:tabular-nums; letter-spacing:-.01em; white-space:nowrap}
 .row .v u{font-size:11px; font-weight:500; color:var(--dim); text-decoration:none; margin-left:3px}
-.big{
-  display:flex; align-items:baseline; gap:9px; flex-wrap:wrap;
-  padding:13px 14px; background:var(--surface-2);
-  border:1px solid var(--line); border-left:2px solid var(--accent);
-  border-radius:var(--r); margin-bottom:14px;
-}
-.big .num{
-  font-family:Archivo,sans-serif; font-weight:700; font-size:34px;
-  letter-spacing:-.03em; color:var(--accent); font-variant-numeric:tabular-nums;
-}
+.big{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap;
+  padding:13px 14px; background:var(--surface-2); border:1px solid var(--line);
+  border-left:2px solid var(--accent); border-radius:var(--r); margin-bottom:14px}
+.big .num{font-family:Archivo,sans-serif; font-weight:700; font-size:34px;
+  letter-spacing:-.03em; color:var(--accent); font-variant-numeric:tabular-nums}
 .big .lbl{font-size:12.5px; color:var(--muted); line-height:1.4}
 
-/* ---------- bar breakdown ---------- */
 .bars{display:flex; flex-direction:column; gap:7px; margin-top:4px}
 .bar{display:grid; grid-template-columns:74px 1fr 62px; gap:9px; align-items:center; font-size:12px}
 .bar .nm{color:var(--muted)}
-.bar .tr{height:7px; background:var(--surface-2); border-radius:1px; overflow:hidden; position:relative}
+.bar .tr{height:7px; background:var(--surface-2); border-radius:1px; overflow:hidden}
 .bar .fl{height:100%; border-radius:1px}
-.bar .amt{
-  font-family:"IBM Plex Mono",monospace; font-size:12px; text-align:right;
-  font-variant-numeric:tabular-nums; color:var(--text);
-}
+.bar .amt{font-family:"IBM Plex Mono",monospace; font-size:12px; text-align:right;
+  font-variant-numeric:tabular-nums; color:var(--text)}
 
-/* ---------- tables ---------- */
 .tblwrap{overflow-x:auto; margin:0 -4px; padding:0 4px}
-table{border-collapse:collapse; width:100%; min-width:520px; font-family:"IBM Plex Mono",monospace; font-size:12.5px}
+table{border-collapse:collapse; width:100%; min-width:520px;
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px}
 th,td{padding:6px 7px; text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
-thead th{
-  color:var(--dim); font-weight:500; font-size:10.5px; letter-spacing:.07em;
-  text-transform:uppercase; border-bottom:1px solid var(--line); padding-bottom:7px;
-}
+thead th{color:var(--dim); font-weight:500; font-size:10.5px; letter-spacing:.07em;
+  text-transform:uppercase; border-bottom:1px solid var(--line); padding-bottom:7px}
 tbody th{color:var(--muted); font-weight:500; text-align:left}
 tbody tr:not(:last-child) td,tbody tr:not(:last-child) th{border-bottom:1px solid var(--line)}
 tr.hi td,tr.hi th{background:var(--surface-2); color:var(--accent)}
 td.d{color:var(--dim)}
 
-/* ---------- heat map ---------- */
 .heat{display:grid; grid-template-columns:auto repeat(5,1fr); gap:3px; min-width:440px}
-.heat .hc{
-  padding:9px 4px; text-align:center; border-radius:2px;
+.heat .hc{padding:9px 4px; text-align:center; border-radius:2px;
   font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:500;
-  font-variant-numeric:tabular-nums; color:#0C1418;
-}
-.heat .hl{
-  font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--dim);
-  display:flex; align-items:center; justify-content:flex-end; padding-right:7px;
-}
-.heat .ht{
-  font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--dim);
-  text-align:center; padding-bottom:2px;
-}
-.scale{display:flex; align-items:center; gap:9px; margin-top:11px; font-size:11.5px; color:var(--muted); flex-wrap:wrap}
+  font-variant-numeric:tabular-nums}
+.heat .hl{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--dim);
+  display:flex; align-items:center; justify-content:flex-end; padding-right:7px}
+.heat .ht{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--dim);
+  text-align:center; padding-bottom:2px}
+.scale{display:flex; align-items:center; gap:9px; margin-top:11px;
+  font-size:11.5px; color:var(--muted); flex-wrap:wrap}
 .scale .grad{height:9px; width:130px; border-radius:1px;
   background:linear-gradient(90deg,var(--cool),var(--surface-2),var(--warm))}
 
-/* ---------- narration ---------- */
-.ai{
-  background:var(--surface); border:1px solid var(--line);
-  border-left:2px solid var(--cool); border-radius:var(--r); padding:15px 16px;
-}
-.ai .who{
-  font-family:Archivo,sans-serif; font-size:10.5px; font-weight:600;
-  letter-spacing:.15em; text-transform:uppercase; color:var(--cool); margin-bottom:8px;
-}
+.ai{background:var(--surface); border:1px solid var(--line);
+  border-left:2px solid var(--cool); border-radius:var(--r); padding:15px 16px}
+.ai .who{font-family:Archivo,sans-serif; font-size:10.5px; font-weight:600;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--cool); margin-bottom:8px}
 .ai p{margin:0; font-size:14px; line-height:1.7}
 .ai p + p{margin-top:9px}
 .ai b{color:var(--accent); font-weight:500}
 
-/* ---------- footer ---------- */
+.note{font-size:12px; color:var(--dim); line-height:1.65; margin:12px 0 0}
+.note b{color:var(--muted); font-weight:400}
+
 footer{margin-top:34px; padding-top:20px; border-top:1px solid var(--line)}
-footer h3{
-  font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
-  letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin:0 0 12px;
-}
+footer h3{font-family:Archivo,sans-serif; font-size:11px; font-weight:600;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin:0 0 12px}
 .fl{display:grid; gap:9px; grid-template-columns:1fr}
 @media(min-width:760px){ .fl{grid-template-columns:1fr 1fr 1fr} }
 .fi{font-size:12.5px; color:var(--muted); line-height:1.6}
 .fi strong{display:block; color:var(--text); font-weight:500; margin-bottom:2px; font-size:13px}
-.ask{
-  margin-top:22px; padding:16px 18px; border:1px solid var(--accent-dim);
-  border-radius:var(--r); background:var(--surface);
-}
+.ask{margin-top:22px; padding:16px 18px; border:1px solid var(--accent-dim);
+  border-radius:var(--r); background:var(--surface)}
 .ask p{margin:0; font-size:15px; line-height:1.7}
-.ask p.q{font-family:Archivo,"IBM Plex Sans KR",sans-serif; font-weight:600; font-size:17px; color:var(--accent); margin-bottom:6px}
-@media(prefers-reduced-motion:no-preference){
-  .fl-anim{transition:width .18s ease, background .18s ease}
-}
+.ask p.q{font-family:Archivo,"IBM Plex Sans KR",sans-serif; font-weight:600;
+  font-size:17px; color:var(--accent); margin-bottom:6px}
+@media(prefers-reduced-motion:no-preference){ .fl-anim{transition:width .18s ease} }
 </style>
 
 <div class="wrap">
 <header>
-  <div class="eyebrow">3-Cushion · 국제식 대대 2844 × 1422</div>
+  <div class="eyebrow">3-Cushion · 국제식 대대 2844 × 1422 · 1다이아 = 355.5 mm</div>
   <h1>내 큐로 계산하면 답이 달라진다</h1>
   <p class="sub">
-    같은 배치라도 큐의 스쿼트 특성, 대의 마찰, 두께, 세기, 수구–적구 거리가 바뀌면
+    같은 배치라도 당점, 타법, 큐의 스쿼트 특성, 대의 마찰, 두께, 세기, 수구–적구 거리가 바뀌면
     쿠션 도달점이 통째로 이동한다. 그 이동량을 팁 단위로 보여주는 화면.
   </p>
   <div class="hdr-note">
@@ -232,18 +189,55 @@ footer h3{
   <!-- ===== LEFT ===== -->
   <div class="stack">
     <div class="card">
-      <h2>당구대 · 8쿠션 경로 <span class="b b-calc">계산</span></h2>
-      <div class="felt-wrap"><svg class="tbl" id="svg" viewBox="-150 -150 3144 1722" role="img" aria-label="국제식 대대 위 8쿠션 경로 도면"></svg></div>
+      <h2>당구대 · 8쿠션 경로 <span class="b b-calc">계산</span> <em>회전의 쿠션 효과는 미반영</em></h2>
+      <div class="felt-wrap"><svg class="tbl" id="svg" viewBox="-210 -210 3264 1842" role="img" aria-label="국제식 대대 위 8쿠션 경로 도면"></svg></div>
       <div class="legend">
         <span><i style="border-top:2px dashed var(--pearl)"></i>조준선 (기하 반사)</span>
         <span><i style="border-top:2px solid var(--accent)"></i>스쿼트 반영 실제 출발</span>
-        <span style="color:var(--dim)">◆ 다이아몬드 · 장쿠션 0–8 / 단쿠션 0–4</span>
       </div>
+      <p class="note">
+        <b>다이아 눈금:</b> 코너가 0, 장쿠션 0–8 · 단쿠션 0–4. <b>1다이아 = 355.5 mm</b> (2844÷8 = 1422÷4).
+        도면의 ◇는 실제 테이블처럼 <b>레일(프레임) 위</b>, 쿠션 노즈에서 약 <b>94 mm</b> 바깥에 있다.
+        표에 찍히는 값은 <b>공이 쿠션 천에 닿는 지점</b>을 다이아 눈금으로 읽은 것이다.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>당점 <span class="b b-calc">계산</span> <em>수구를 정면에서 본 것 — 끌어서 옮긴다</em></h2>
+      <div class="tip">
+        <div id="tipwrap" tabindex="0" role="slider" aria-label="당점 위치"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <svg viewBox="-50 -50 100 100" id="tipsvg"></svg>
+        </div>
+        <div class="tipinfo">
+          <div><span>좌우 (회전)</span><span id="t-h">—</span></div>
+          <div><span>세로 (타법)</span><span id="t-v">—</span></div>
+          <div><span>중심 이격</span><span id="t-r">—</span></div>
+          <div><span>오버스핀 비율</span><span id="t-s">—</span></div>
+          <div><span>상태</span><span id="t-state">—</span></div>
+        </div>
+      </div>
+      <p class="note">
+        <b>미스큐 한계는 중심에서 R/2 = 15.4 mm (약 3.08팁).</b> 바깥 점선 원이 그 한계다 — 넘어서 칠 수 없다.
+        가로 실선은 <b>자연 구름 타점 (0.4 R = 12.3 mm 위)</b> — 여기를 치면 미끄러지지 않고 처음부터 구른다.
+        그보다 위가 <b>오버스핀(밀어치기)</b>이고, 상한은 자연 구름의 <b>1.25배</b>다.
+      </p>
     </div>
 
     <div class="card">
       <h2>샷</h2>
       <div class="ctrls">
+        <div class="ctrl">
+          <label for="c-preset">타법 프리셋</label>
+          <span class="val" id="v-preset"></span>
+          <select id="c-preset">
+            <option value="stun">공만 딱 치고 멈춤 (잽) · 중단 · 3.5 m/s</option>
+            <option value="soft" selected>부드럽게 밀어치기 · 상단 · 2.5 m/s</option>
+            <option value="hard">세게 밀어치기 · 상단 · 4.5 m/s</option>
+            <option value="draw">끌어치기 · 하단 · 3.5 m/s</option>
+            <option value="free">직접 조절</option>
+          </select>
+        </div>
         <div class="ctrl">
           <label for="c-pos">수구 위치 <span style="color:var(--dim)">하단 장쿠션</span></label>
           <span class="val" id="v-pos"></span>
@@ -261,33 +255,22 @@ footer h3{
             <input type="range" id="c-thick" min="1" max="8" step="1" value="4">
           </div>
           <div class="ctrl">
-            <label for="c-tips">회전</label>
-            <span class="val" id="v-tips"></span>
-            <input type="range" id="c-tips" min="0" max="4" step="1" value="2">
+            <label for="c-dist">수구–적구 거리</label>
+            <span class="val" id="v-dist"></span>
+            <input type="range" id="c-dist" min="0.3" max="3" step="0.1" value="2">
           </div>
         </div>
         <div class="split">
           <div class="ctrl">
-            <label for="c-dist">수구–적구 거리</label>
-            <span class="val" id="v-dist"></span>
-            <input type="range" id="c-dist" min="0.3" max="3" step="0.1" value="2">
+            <label for="c-speed">큐 속도</label>
+            <span class="val" id="v-speed"></span>
+            <input type="range" id="c-speed" min="1" max="5.5" step="0.1" value="2.5">
           </div>
           <div class="ctrl">
             <label for="c-elev">큐 세운 각도</label>
             <span class="val" id="v-elev"></span>
             <input type="range" id="c-elev" min="0" max="10" step="0.5" value="3">
           </div>
-        </div>
-        <div class="ctrl">
-          <label for="c-stroke">스트로크</label>
-          <span class="val" id="v-speed"></span>
-          <select id="c-stroke">
-            <option value="1.5">아주 약하게 · 1.5 m/s</option>
-            <option value="2.5">밀어치기 · 2.5 m/s</option>
-            <option value="3.0" selected>보통치기 · 3.0 m/s</option>
-            <option value="4.0">세게치기 · 4.0 m/s</option>
-            <option value="5.0">강타 · 5.0 m/s</option>
-          </select>
         </div>
       </div>
     </div>
@@ -314,17 +297,14 @@ footer h3{
           </select>
         </div>
       </div>
-      <p style="font-size:12px;color:var(--dim);margin:13px 0 0;line-height:1.6">
-        이 두 값이 없으면 위의 어떤 계산도 <b style="color:var(--muted);font-weight:400">당신의</b> 답이 아니다.
-        재는 데 당구장에서 20분.
-      </p>
+      <p class="note">이 두 값이 없으면 위의 어떤 계산도 <b>당신의</b> 답이 아니다. 재는 데 당구장에서 20분.</p>
     </div>
   </div>
 
   <!-- ===== RIGHT ===== -->
   <div class="stack">
     <div class="card">
-      <h2>스쿼트 <span class="b b-calc">계산</span> <span style="color:var(--dim);font-weight:400;letter-spacing:0;text-transform:none">tan θ = 팁오프셋 ÷ 피벗길이</span></h2>
+      <h2>스쿼트 <span class="b b-calc">계산</span> <em>tan θ = 좌우 오프셋 ÷ 피벗길이</em></h2>
       <div class="big">
         <span class="num" id="o-drift">—</span>
         <span class="lbl">적구 지점에서의 횡이탈<br><span id="o-ball" style="color:var(--dim)"></span></span>
@@ -344,10 +324,9 @@ footer h3{
       <h2>두께 · 분리각 <span class="b b-calc">계산</span></h2>
       <div class="ro">
         <div class="row"><span class="k">절단각<small>sin θ = 1 − 두께비율</small></span><span class="v" id="o-cut">—</span></div>
-        <div class="row"><span class="k">스턴으로 도착 시 수구 편향<small>90° 법칙</small></span><span class="v" id="o-stun">—</span></div>
-        <div class="row"><span class="k">구르며 도착 시 수구 편향<small>30° 법칙 · 두께 1/4–3/4 구간</small></span><span class="v" id="o-roll">—</span></div>
-        <div class="row"><span class="k">미끄럼 → 구름 전이 거리<small>d = 12v² ÷ 49μg</small></span><span class="v" id="o-slide">—</span></div>
-        <div class="row"><span class="k">적구에 닿을 때 상태</span><span class="v" id="o-state">—</span></div>
+        <div class="row"><span class="k">미끄럼 → 구름 전이 거리<small id="o-slidef">—</small></span><span class="v" id="o-slide">—</span></div>
+        <div class="row"><span class="k">적구에 닿을 때 회전 상태<small>1.00 = 자연 구름</small></span><span class="v" id="o-arr">—</span></div>
+        <div class="row"><span class="k">수구 편향<small id="o-devf">—</small></span><span class="v" id="o-dev">—</span></div>
       </div>
     </div>
 
@@ -358,30 +337,52 @@ footer h3{
   </div>
 </div>
 
-<!-- ===== SENSITIVITY TABLE ===== -->
+<!-- ===== DECAY ===== -->
 <div class="card" style="margin-top:18px">
-  <h2>팁 감도표 · 회전 1팁이 8개 쿠션을 어디로 옮기는가 <span class="b b-calc">계산</span></h2>
-  <p style="font-size:13px;color:var(--muted);margin:-4px 0 14px;max-width:70ch">
+  <h2>쿠션을 지날수록 — 속도와 회전은 같이, 그러나 다른 속도로 줄어든다 <span class="b b-pend">계수 미확정</span></h2>
+  <p class="note" style="margin:-4px 0 14px; font-size:13px; color:var(--muted); max-width:74ch">
+    경로 길이는 위 도면의 실제 반사 경로에서 가져왔다. 감쇠 계수는 <b>당구대에서 재야 확정</b>된다.
+    <b style="color:var(--text);font-weight:500">밀어치기(오버스핀)는 미끄럼 구간이 없어 회전을 훨씬 잘 보존한다</b> — 타법 프리셋을 바꿔 비교해 보라.
+  </p>
+  <div class="tblwrap"><table>
+    <thead><tr><th style="text-align:left">지점</th><th>구간 거리</th><th>속도</th><th>초기 대비</th><th>회전 잔존</th><th>회전/속도 비</th></tr></thead>
+    <tbody id="decay"></tbody>
+  </table></div>
+  <p class="note">
+    모델: 구간마다 <b>구름저항 μr=0.010</b>으로 감속 → 쿠션에서 <b>반발 e=0.85</b>.
+    회전은 <b>미끄럼 구간 k=0.35/m · 구름 구간 k=0.06/m</b>로 감쇠하고 쿠션마다 <b>75%</b>만 남는다.
+    <span class="b b-meas">실측</span> 반발계수는 스누커 0.818 (입사 0.28–3.5 m/s) 참고값.
+  </p>
+</div>
+
+<!-- ===== SENSITIVITY ===== -->
+<div class="card" style="margin-top:18px">
+  <h2>팁 감도표 · 좌우 회전 1팁이 8개 쿠션을 어디로 옮기는가 <span class="b b-calc">계산</span></h2>
+  <p class="note" style="margin:-4px 0 14px; font-size:13px; color:var(--muted); max-width:74ch">
     스쿼트가 출발 각도를 바꾸면 이후 8개 쿠션의 도달점이 전부 이동한다. 아래는 그 이동을 다이아몬드 눈금으로 편 것이다.
     <b style="color:var(--text);font-weight:500">경기 중에 궤적 그림은 못 보지만, "1팁 = 몇 포인트"는 외워진다.</b>
   </p>
   <div class="tblwrap"><table>
-    <thead><tr><th style="text-align:left">회전</th>
-      <th>1쿠션</th><th>2쿠션</th><th>3쿠션</th><th>4쿠션</th><th>5쿠션</th><th>6쿠션</th><th>7쿠션</th><th>8쿠션</th></tr>
-      <tr><th style="text-align:left;font-size:9.5px;border:0;padding-top:0">단위</th><th colspan="8" style="text-align:left;font-size:9.5px;border:0;padding-top:0;font-weight:400;text-transform:none;letter-spacing:0">장/단 = 장쿠션·단쿠션 · 숫자 = 다이아몬드 눈금 · 괄호 = 0팁 대비 이동</th></tr></thead>
+    <thead>
+      <tr><th style="text-align:left">좌우 회전</th>
+        <th>1쿠션</th><th>2쿠션</th><th>3쿠션</th><th>4쿠션</th><th>5쿠션</th><th>6쿠션</th><th>7쿠션</th><th>8쿠션</th></tr>
+      <tr><th style="text-align:left;font-size:9.5px;border:0;padding-top:0">단위</th>
+        <th colspan="8" style="text-align:left;font-size:9.5px;border:0;padding-top:0;font-weight:400;text-transform:none;letter-spacing:0">장/단 = 장쿠션·단쿠션 · 숫자 = 다이아 눈금 · 괄호 = 0팁 대비 이동</th></tr>
+    </thead>
     <tbody id="sens"></tbody>
   </table></div>
-  <p style="font-size:12px;color:var(--dim);margin:12px 0 0;line-height:1.6">
-    <span class="b b-pend">미반영</span> 여기에 <b style="color:var(--muted);font-weight:400">회전이 쿠션 반발에 주는 효과</b>가 더해진다.
-    그 값은 대마다 달라 캘리브레이션이 필요하다 — 3쿠션쯤에서는 초기 회전의 상당 부분이 이미 감쇠해 있다.
+  <p class="note">
+    <span class="b b-pend">미반영</span> 여기에 <b>회전이 쿠션 반발에 주는 효과</b>가 더해진다.
+    위 감쇠표에서 보듯 3쿠션쯤에서는 초기 회전의 상당 부분이 이미 사라져 있어, 그 효과는 쿠션마다 크기가 다르다.
   </p>
 </div>
 
 <!-- ===== HEATMAP ===== -->
 <div class="card" style="margin-top:18px">
-  <h2>거리 × 세기 → 순 이탈량 <span style="color:var(--dim);font-weight:400;letter-spacing:0;text-transform:none">현재 큐 기준 · <span id="hm-cue"></span> · <span id="hm-tips"></span></span></h2>
-  <p style="font-size:13px;color:var(--muted);margin:-4px 0 14px;max-width:70ch">
-    스쿼트는 거리에 곱해지고, 커브는 미끄럼 구간에서만 생긴다. 그래서 <b style="color:var(--text);font-weight:500">순 이탈량은 거리와 세기에 따라 부호가 바뀐다.</b>
+  <h2>거리 × 세기 → 순 이탈량 <em>현재 큐 기준 · <span id="hm-cue"></span> · <span id="hm-tips"></span></em></h2>
+  <p class="note" style="margin:-4px 0 14px; font-size:13px; color:var(--muted); max-width:74ch">
+    스쿼트는 거리에 곱해지고, 커브는 미끄럼 구간에서만 생긴다. 그래서
+    <b style="color:var(--text);font-weight:500">순 이탈량은 거리와 세기에 따라 부호가 바뀐다.</b>
     "어떤 거리에서만 잘 맞는다"는 체감의 정체가 이것이다.
   </p>
   <div class="tblwrap"><div class="heat" id="heat"></div></div>
@@ -390,10 +391,10 @@ footer h3{
     <span class="grad"></span>
     <span style="color:var(--warm)">회전 반대쪽으로 (스쿼트 우세) ▶</span>
   </div>
-  <p style="font-size:12px;color:var(--dim);margin:12px 0 0;line-height:1.6">
-    <b style="color:var(--muted);font-weight:400">저디플렉션 큐를 골라 보라.</b> 느린 롱샷 칸이 파랗게 바뀐다 —
+  <p class="note">
+    <b>저디플렉션 큐를 골라 보라.</b> 느린 롱샷 칸이 파랗게 바뀐다 —
     스쿼트가 작아지면 커브가 상쇄할 상대를 잃고 회전 준 쪽으로 넘어간다.
-    저디플렉션 큐는 "안 휘는 큐"가 아니라 <b style="color:var(--muted);font-weight:400">휘는 원인이 바뀐 큐</b>다.
+    저디플렉션 큐는 "안 휘는 큐"가 아니라 <b>휘는 원인이 바뀐 큐</b>다.
   </p>
 </div>
 
@@ -401,16 +402,19 @@ footer h3{
   <h3>이 화면에서 실제로 계산된 것 / 아직 아닌 것</h3>
   <div class="fl">
     <div class="fi"><strong><span class="b b-calc">계산</span> 확정된 공식</strong>
-      두께↔절단각 (sinθ=1−f) · 스쿼트각 (피벗 모델) · 미끄럼 전이 거리 (12v²/49μg) · 8쿠션 기하 반사 경로 · 90°/30° 법칙</div>
+      두께↔절단각 (sinθ=1−f) · 스쿼트각 (피벗 모델) · <b>당점→오버스핀 (ω/v=5b/2R²)</b> ·
+      <b>미스큐 한계 |b|≤R/2</b> · 미끄럼 전이 거리 · 8쿠션 기하 반사 · 90°/30° 법칙</div>
     <div class="fi"><strong><span class="b b-meas">실측</span> 문헌값</strong>
-      피벗 길이 9.5" / 13" / 19" — 단 <b>풀 기준</b>이라 캐롬은 다시 재야 한다. 쿠션 반발계수 0.818 (스누커, 입사 0.28–3.5 m/s)</div>
+      피벗 길이 9.5" / 13" / 19" — 단 <b>풀 기준</b>이라 캐롬은 다시 재야 한다.
+      쿠션 반발계수 0.818 (스누커). 팁 접촉 시간 약 0.001초 — <b>팔로우스루는 공에 직접 영향을 주지 못한다</b></div>
     <div class="fi"><strong><span class="b b-pend">미확정</span> 당구대에서 잴 것</strong>
-      커브 계수 · 회전이 쿠션 반발에 주는 효과 · 스핀 감쇠율 · 구름 저항 · 팁→mm 환산 · 다이아몬드 시스템 숫자표</div>
+      커브 계수 · <b>회전 감쇠율 (미끄럼/구름/쿠션)</b> · 회전이 쿠션 반발에 주는 효과 ·
+      구름 저항 · 팁→mm 환산 · 다이아몬드 시스템 숫자표</div>
   </div>
   <div class="ask">
     <p class="q">묻고 싶은 것은 하나다.</p>
     <p>궤적을 그려 주는 도구는 이미 무료로 있다. 이 화면이 그것들과 다른 점은
-      <b style="color:var(--text);font-weight:500">당신의 큐와 당신의 대를 계산에 넣고, 틀린 이유를 분해해 보여준다</b>는 것뿐이다.
+      <b style="color:var(--text);font-weight:500">당신의 큐와 당신의 대, 당신의 당점과 타법을 계산에 넣고, 틀린 이유를 분해해 보여준다</b>는 것뿐이다.
       <b style="color:var(--text);font-weight:500">이게 돈을 낼 만한 차이인가?</b></p>
   </div>
 </footer>
@@ -420,20 +424,30 @@ footer h3{
 (function(){
 "use strict";
 const G=9.8, W=2844, H=1422, R=30.75, D=355.5, MM_PER_TIP=5, SWERVE_C=6.0;
+const MISCUE=R/2;                       // 미스큐 한계 오프셋 15.375mm
+const NATURAL=0.4*R;                    // 자연 구름 타점 12.3mm
+const E_CUSHION=0.85, MU_ROLL=0.010, K_SLIDE=0.35, K_ROLL=0.06, SPIN_KEEP=0.75;
 const $=id=>document.getElementById(id);
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 
-/* ---- physics (see docs 06 / 07) ---- */
-const squirtAngle=(tips,pivotIn)=>Math.atan((tips*MM_PER_TIP)/(pivotIn*25.4));
-const slideDist=(v,mu)=>12*v*v/(49*mu*G);
-function swerveMM(tips,elevDeg,mu,v,dM){
-  const a=SWERVE_C*Math.sin(elevDeg*Math.PI/180)*(tips/4);
+/* 당점 (mm, 중심 기준). x=우측+, y=위+ */
+let tipX=0, tipY=NATURAL*0.75;
+
+/* ---- physics ---- */
+const squirtAngle=(offMM,pivotIn)=>Math.atan(Math.abs(offMM)/(pivotIn*25.4))*Math.sign(offMM||1);
+const spinRatio=b=>5*b/(2*R);                       // 1.0 = 자연 구름
+function slideDist(v,mu,s){                          // s = 오버스핀 비율
+  const u=1-s;
+  return (2*v*v/(7*mu*G))*(Math.abs(u)-u*u/7);
+}
+function swerveMM(offMM,elevDeg,mu,v,dM){
+  const a=SWERVE_C*Math.sin(elevDeg*Math.PI/180)*(Math.abs(offMM)/MISCUE);
   if(a<=0) return 0;
-  const ts=2*v/(7*mu*G), ds=slideDist(v,mu), dphi=Math.atan(2*a/(7*mu*G));
+  const ts=2*v/(7*mu*G), ds=slideDist(v,mu,0), dphi=Math.atan(2*a/(7*mu*G));
   if(dM<=ds) return 0.5*a*Math.pow(dM/v,2)*1000;
   return (0.5*a*ts*ts+(dM-ds)*Math.tan(dphi))*1000;
 }
-/* ---- 8-cushion mirror reflection (no spin) ---- */
+/* 8쿠션 기하 반사 (회전 무시) */
 function path(sx,sy,ang,n){
   const lo=R,hiX=W-R,hiY=H-R;
   let x=clamp(sx,lo,hiX), y=clamp(sy,lo,hiY);
@@ -446,120 +460,231 @@ function path(sx,sy,ang,n){
     if(dy>1e-9){const c=(hiY-y)/dy; if(c<t){t=c;axis='y';}}
     if(dy<-1e-9){const c=(lo-y)/dy; if(c<t){t=c;axis='y';}}
     if(!isFinite(t)) break;
-    x+=dx*t; y+=dy*t;
+    const px=x,py=y; x+=dx*t; y+=dy*t;
     pts.push({x,y});
-    hits.push(axis==='y' ? {rail:'long', dia:x/D} : {rail:'short', dia:y/D});
+    hits.push({rail:axis==='y'?'long':'short', dia:(axis==='y'?x:y)/D,
+               seg:Math.hypot(x-px,y-py)/1000});
     if(axis==='x') dx=-dx; else dy=-dy;
   }
   return {pts,hits};
 }
 
-/* ---- svg ---- */
+/* ---- svg table ---- */
 const NS="http://www.w3.org/2000/svg";
-function el(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+function el(t,a,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);
+  if(txt!==undefined)e.textContent=txt;return e;}
 function draw(base,shot){
   const s=$("svg"); s.textContent="";
-  s.appendChild(el("rect",{x:-150,y:-150,width:W+300,height:H+300,rx:26,fill:"var(--rail)"}));
+  s.appendChild(el("rect",{x:-210,y:-210,width:W+420,height:H+420,rx:30,fill:"var(--rail)"}));
   s.appendChild(el("rect",{x:-64,y:-64,width:W+128,height:H+128,rx:8,fill:"var(--rail-hi)"}));
   s.appendChild(el("rect",{x:0,y:0,width:W,height:H,fill:"var(--felt)"}));
   s.appendChild(el("rect",{x:0,y:0,width:W,height:H,fill:"none",stroke:"var(--felt-lo)","stroke-width":8}));
-  for(let i=1;i<8;i++){ const x=i*D;
-    [[-95],[H+95]].forEach(([y])=>s.appendChild(el("circle",{cx:x,cy:y,r:22,fill:"var(--pearl)"})));
-    s.appendChild(el("line",{x1:x,y1:0,x2:x,y2:22,stroke:"var(--felt-lo)","stroke-width":3}));
-    s.appendChild(el("line",{x1:x,y1:H,x2:x,y2:H-22,stroke:"var(--felt-lo)","stroke-width":3}));
+  const lbl={"font-size":"58","font-family":"IBM Plex Mono, monospace","font-weight":"500",
+    fill:"var(--pearl)","text-anchor":"middle",opacity:".7"};
+  for(let i=0;i<=8;i++){ const x=i*D;
+    if(i>0&&i<8){
+      s.appendChild(el("circle",{cx:x,cy:-94,r:22,fill:"var(--pearl)"}));
+      s.appendChild(el("circle",{cx:x,cy:H+94,r:22,fill:"var(--pearl)"}));
+    }
+    s.appendChild(el("text",Object.assign({x:x,y:-140},lbl),i));
+    s.appendChild(el("text",Object.assign({x:x,y:H+180},lbl),i));
   }
-  for(let i=1;i<4;i++){ const y=i*D;
-    [[-95],[W+95]].forEach(([x])=>s.appendChild(el("circle",{cx:x,cy:y,r:22,fill:"var(--pearl)"})));
+  for(let i=0;i<=4;i++){ const y=i*D;
+    if(i>0&&i<4){
+      s.appendChild(el("circle",{cx:-94,cy:y,r:22,fill:"var(--pearl)"}));
+      s.appendChild(el("circle",{cx:W+94,cy:y,r:22,fill:"var(--pearl)"}));
+    }
+    s.appendChild(el("text",Object.assign({x:-155,y:y+20},lbl),i));
+    s.appendChild(el("text",Object.assign({x:W+155,y:y+20},lbl),i));
   }
   const poly=p=>p.map(q=>q.x.toFixed(1)+","+q.y.toFixed(1)).join(" ");
   s.appendChild(el("polyline",{points:poly(base.pts),fill:"none",stroke:"var(--pearl)","stroke-width":9,
-    "stroke-dasharray":"26 22","stroke-linejoin":"round","opacity":".55"}));
+    "stroke-dasharray":"26 22","stroke-linejoin":"round",opacity:".55"}));
   s.appendChild(el("polyline",{points:poly(shot.pts),fill:"none",stroke:"var(--accent)","stroke-width":11,
     "stroke-linejoin":"round","stroke-linecap":"round"}));
   shot.pts.slice(1).forEach((p,i)=>{
     s.appendChild(el("circle",{cx:p.x,cy:p.y,r:26,fill:"var(--accent)"}));
-    const t=el("text",{x:p.x,y:p.y+10,"text-anchor":"middle","font-size":"56","font-family":"Archivo, sans-serif",
-      "font-weight":"700",fill:"var(--rail)"}); t.textContent=i+1; s.appendChild(t);
+    s.appendChild(el("text",{x:p.x,y:p.y+10,"text-anchor":"middle","font-size":"56",
+      "font-family":"Archivo, sans-serif","font-weight":"700",fill:"var(--rail)"},i+1));
   });
   const c=shot.pts[0];
   s.appendChild(el("circle",{cx:c.x,cy:c.y,r:R+4,fill:"#fff",stroke:"var(--rail)","stroke-width":5}));
 }
 
+/* ---- tip picker ---- */
+const SC=42/R;   // mm → svg units (ball radius drawn at 42)
+function drawTip(){
+  const s=$("tipsvg"); s.textContent="";
+  s.appendChild(el("circle",{cx:0,cy:0,r:42,fill:"var(--surface-2)",stroke:"var(--line)","stroke-width":1.2}));
+  s.appendChild(el("circle",{cx:0,cy:0,r:MISCUE*SC,fill:"none",stroke:"var(--pend)",
+    "stroke-width":1.1,"stroke-dasharray":"3 2.5"}));
+  [1,2,3].forEach(t=>{ const r=t*MM_PER_TIP*SC;
+    if(r<42) s.appendChild(el("circle",{cx:0,cy:0,r:r,fill:"none",stroke:"var(--line)","stroke-width":.6}));});
+  s.appendChild(el("line",{x1:-42,y1:0,x2:42,y2:0,stroke:"var(--line)","stroke-width":.6}));
+  s.appendChild(el("line",{x1:0,y1:-42,x2:0,y2:42,stroke:"var(--line)","stroke-width":.6}));
+  const ny=-NATURAL*SC;
+  s.appendChild(el("line",{x1:-30,y1:ny,x2:30,y2:ny,stroke:"var(--ok)","stroke-width":1.3}));
+  s.appendChild(el("text",{x:31,y:ny+2.5,"font-size":"5.4","font-family":"IBM Plex Mono, monospace",
+    fill:"var(--ok)"},"구름"));
+  s.appendChild(el("circle",{cx:tipX*SC,cy:-tipY*SC,r:5,fill:"var(--accent)",
+    stroke:"var(--ground)","stroke-width":1.5}));
+}
+function setTip(cx,cy){
+  const w=$("tipwrap").getBoundingClientRect();
+  let x=((cx-w.left)/w.width*100-50)/SC, y=-((cy-w.top)/w.height*100-50)/SC;
+  const r=Math.hypot(x,y);
+  if(r>MISCUE){ x*=MISCUE/r; y*=MISCUE/r; }
+  tipX=x; tipY=y; $("c-preset").value="free"; render();
+}
+(function(){
+  const wrap=$("tipwrap"); let down=false;
+  wrap.addEventListener("pointerdown",e=>{down=true;wrap.setPointerCapture(e.pointerId);setTip(e.clientX,e.clientY);});
+  wrap.addEventListener("pointermove",e=>{if(down)setTip(e.clientX,e.clientY);});
+  wrap.addEventListener("pointerup",()=>{down=false;});
+  wrap.addEventListener("keydown",e=>{
+    const step=MM_PER_TIP/4; let h=false;
+    if(e.key==="ArrowLeft"){tipX-=step;h=true;} if(e.key==="ArrowRight"){tipX+=step;h=true;}
+    if(e.key==="ArrowUp"){tipY+=step;h=true;}  if(e.key==="ArrowDown"){tipY-=step;h=true;}
+    if(h){e.preventDefault(); const r=Math.hypot(tipX,tipY);
+      if(r>MISCUE){tipX*=MISCUE/r;tipY*=MISCUE/r;} $("c-preset").value="free"; render();}
+  });
+})();
+
+const PRESETS={
+  stun:{x:MM_PER_TIP*2,y:0,           v:3.5, e:2, n:"공만 딱 치고 멈춤"},
+  soft:{x:MM_PER_TIP*2,y:NATURAL*1.05,v:2.5, e:3, n:"부드럽게 밀어치기"},
+  hard:{x:MM_PER_TIP*2,y:NATURAL*1.05,v:4.5, e:3, n:"세게 밀어치기"},
+  draw:{x:MM_PER_TIP*2,y:-NATURAL*0.9,v:3.5, e:4, n:"끌어치기"}
+};
+$("c-preset").addEventListener("change",()=>{
+  const p=PRESETS[$("c-preset").value]; if(!p) return render();
+  const r=Math.hypot(p.x,p.y), k=r>MISCUE?MISCUE/r:1;
+  tipX=p.x*k; tipY=p.y*k; $("c-speed").value=p.v; $("c-elev").value=p.e; render();
+});
+
 /* ---- render ---- */
 function render(){
   const posD=+$("c-pos").value, aimD=+$("c-aim").value, thick=+$("c-thick").value,
-        tips=+$("c-tips").value, dist=+$("c-dist").value, elev=+$("c-elev").value,
-        v=+$("c-stroke").value, pivot=+$("c-pivot").value, mu=+$("c-mu").value;
+        dist=+$("c-dist").value, elev=+$("c-elev").value, v=+$("c-speed").value,
+        pivot=+$("c-pivot").value, mu=+$("c-mu").value;
+  const s0=spinRatio(tipY), tipsH=tipX/MM_PER_TIP, tipsV=tipY/MM_PER_TIP;
 
   $("v-pos").textContent=posD.toFixed(2)+" 다이아";
   $("v-aim").textContent=aimD.toFixed(2)+" 다이아";
   $("v-thick").textContent=thick+"/8";
-  $("v-tips").textContent=tips+" 팁";
   $("v-dist").textContent=dist.toFixed(1)+" m";
   $("v-elev").textContent=elev.toFixed(1)+"°";
   $("v-speed").textContent=v.toFixed(1)+" m/s";
   $("v-pivot").textContent=pivot+'"';
   $("v-mu").textContent=mu.toFixed(2);
+  const pk=PRESETS[$("c-preset").value];
+  $("v-preset").textContent=pk?pk.n:"직접 조절";
 
+  drawTip();
+  $("t-h").textContent=(tipsH>=0?"우 ":"좌 ")+Math.abs(tipsH).toFixed(2)+" 팁";
+  $("t-v").textContent=(tipsV>=0?"상 ":"하 ")+Math.abs(tipsV).toFixed(2)+" 팁";
+  $("t-r").textContent=Math.hypot(tipX,tipY).toFixed(1)+" / 15.4 mm";
+  $("t-s").textContent=s0.toFixed(2);
+  let tstate,tcol;
+  if(s0>1.02){tstate="오버스핀 (밀어치기)";tcol="var(--accent)";}
+  else if(s0>0.95){tstate="자연 구름 — 미끄럼 없음";tcol="var(--ok)";}
+  else if(s0>0.05){tstate="미끄럼 후 구름";tcol="var(--muted)";}
+  else if(s0>-0.05){tstate="스턴 (중단)";tcol="var(--cool)";}
+  else {tstate="백스핀 (끌어치기)";tcol="var(--cool)";}
+  $("t-state").innerHTML='<span style="color:'+tcol+'">'+tstate+"</span>";
+
+  /* path */
   const sx=posD*D, sy=R, tx=aimD*D, ty=H-R;
   const aim=Math.atan2(ty-sy,tx-sx);
-  const sq=squirtAngle(tips,pivot);
+  const sq=squirtAngle(tipX,pivot);
   const base=path(sx,sy,aim,8), shot=path(sx,sy,aim-sq,8);
   draw(base,shot);
 
-  /* squirt panel */
-  const drift=dist*1000*Math.tan(sq);
-  const sw=swerveMM(tips,elev,mu,v,dist);
+  /* squirt */
+  const drift=dist*1000*Math.tan(Math.abs(sq))*Math.sign(sq||1);
+  const sw=swerveMM(tipX,elev,mu,v,dist)*Math.sign(sq||1);
   const net=drift-sw;
-  $("o-drift").textContent=drift.toFixed(1)+" mm";
-  $("o-ball").textContent="캐롬 공 지름 61.5mm 대비 "+(drift/61.5).toFixed(2)+"개";
-  $("o-sqang").innerHTML=(sq*180/Math.PI).toFixed(2)+"<u>°</u>";
-  $("o-swerve").innerHTML="−"+sw.toFixed(1)+"<u>mm</u>";
-  $("o-net").innerHTML=(net>=0?"+":"−")+Math.abs(net).toFixed(1)+"<u>mm</u>";
-  $("o-net").style.color=net>=0?"var(--warm)":"var(--cool)";
-  $("o-netdir").textContent=net>=0?"회전 반대쪽으로 밀린다":"커브가 이겨 회전 준 쪽으로 넘어간다";
-  const mx=Math.max(drift,sw,1);
-  $("bar-sq").style.width=(drift/mx*100)+"%"; $("amt-sq").textContent=drift.toFixed(1)+"mm";
-  $("bar-sw").style.width=(sw/mx*100)+"%";   $("amt-sw").textContent=sw.toFixed(1)+"mm";
+  $("o-drift").textContent=Math.abs(drift).toFixed(1)+" mm";
+  $("o-ball").textContent="캐롬 공 지름 61.5mm 대비 "+(Math.abs(drift)/61.5).toFixed(2)+"개";
+  $("o-sqang").innerHTML=(Math.abs(sq)*180/Math.PI).toFixed(2)+"<u>°</u>";
+  $("o-swerve").innerHTML="−"+Math.abs(sw).toFixed(1)+"<u>mm</u>";
+  $("o-net").innerHTML=(Math.abs(net)).toFixed(1)+"<u>mm</u>";
+  const outward=Math.abs(drift)>=Math.abs(sw);
+  $("o-net").style.color=outward?"var(--warm)":"var(--cool)";
+  $("o-netdir").textContent=Math.abs(tipX)<0.01?"좌우 회전 없음":
+    (outward?"회전 반대쪽으로 밀린다":"커브가 이겨 회전 준 쪽으로 넘어간다");
+  const mx=Math.max(Math.abs(drift),Math.abs(sw),1);
+  $("bar-sq").style.width=(Math.abs(drift)/mx*100)+"%"; $("amt-sq").textContent=Math.abs(drift).toFixed(1)+"mm";
+  $("bar-sw").style.width=(Math.abs(sw)/mx*100)+"%";    $("amt-sw").textContent=Math.abs(sw).toFixed(1)+"mm";
 
-  /* thickness panel */
+  /* thickness / separation */
   const f=thick/8, cut=Math.asin(clamp(1-f,-1,1))*180/Math.PI;
-  const ds=slideDist(v,mu);
+  const ds=slideDist(v,mu,s0);
   $("o-cut").innerHTML=cut.toFixed(2)+"<u>°</u>";
-  $("o-stun").innerHTML=(90-cut).toFixed(2)+"<u>°</u>";
-  const inRange=f>=0.25&&f<=0.75;
-  $("o-roll").innerHTML=inRange?(Math.abs(f-0.5)<.01?"약 34<u>°</u>":"약 30<u>°</u>"):'<span style="font-size:13px;color:var(--dim)">법칙 적용 범위 밖</span>';
   $("o-slide").innerHTML=ds.toFixed(2)+"<u>m</u>";
-  let state,sc;
-  if(dist<ds*0.75){state="미끄러진 채 도착 · 스턴에 가까움";sc="var(--warm)";}
-  else if(dist<ds*1.25){state="전이 중 · 스턴과 구름 사이";sc="var(--accent)";}
-  else {state="구르며 도착 · 자연 구름";sc="var(--cool)";}
-  $("o-state").innerHTML='<span style="font-size:13px;color:'+sc+'">'+state+"</span>";
+  $("o-slidef").textContent=s0>0.98&&s0<1.02?"자연 구름 타점이라 미끄럼이 거의 없다":"d = (2v²/7μg)·(|1−s| − (1−s)²/7)";
+  const sArr = dist>=ds ? 1.0 : s0+(1-s0)*(ds>0?dist/ds:1);
+  $("o-arr").textContent=sArr.toFixed(2);
+  const inRange=f>=0.25&&f<=0.75;
+  let dev,devf;
+  if(sArr<=0.02){ dev=(90-cut).toFixed(1)+"°"; devf="스턴 — 90° 법칙"; }
+  else if(sArr<0.98){ const stun=90-cut, roll=inRange?(Math.abs(f-.5)<.01?34:30):stun;
+    dev=(stun+(roll-stun)*sArr).toFixed(1)+"°"; devf="스턴↔구름 사이 보간"; }
+  else if(sArr<1.02){ dev=inRange?(Math.abs(f-.5)<.01?"34°":"약 30°"):"법칙 범위 밖"; devf="자연 구름 — 30° 법칙"; }
+  else { dev="30° 미만"; devf="오버스핀 — 30° 법칙보다 더 앞으로 파고든다"; }
+  $("o-dev").innerHTML='<span style="font-size:'+(dev.length>5?"15px":"19px")+'">'+dev+"</span>";
+  $("o-devf").textContent=devf;
 
-  /* sensitivity table */
+  /* decay table */
+  const dt=$("decay"); dt.textContent="";
+  let vv=v, ww=100;
+  const seg1=shot.hits[0]?shot.hits[0].seg:ds;
+  const firstSlide=Math.min(ds,seg1);
+  ww*=Math.exp(-K_SLIDE*firstSlide-K_ROLL*Math.max(0,seg1-firstSlide));
+  const addRow=(name,seg,vel,spin,cls)=>{
+    const tr=document.createElement("tr"); if(cls)tr.className=cls;
+    const th=document.createElement("th"); th.textContent=name; tr.appendChild(th);
+    [seg===null?"—":seg.toFixed(2)+" m",
+     vel.toFixed(2)+" m/s",
+     (100*vel/v).toFixed(1)+"%",
+     spin.toFixed(1)+"%",
+     (spin/Math.max(100*vel/v,.01)).toFixed(2)].forEach(t=>{
+       const td=document.createElement("td"); td.textContent=t; tr.appendChild(td);});
+    dt.appendChild(tr);
+  };
+  addRow("출발 (1쿠션 도달 직전)",null,vv,ww);
+  shot.hits.slice(0,6).forEach((h,i)=>{
+    vv=Math.sqrt(Math.max(vv*vv-2*MU_ROLL*G*h.seg,0))*E_CUSHION;
+    ww*=SPIN_KEEP*(i===0?1:Math.exp(-K_ROLL*h.seg));
+    addRow((i+1)+"쿠션 직후",h.seg,vv,ww,i===2?"hi":"");
+  });
+
+  /* sensitivity */
   const tb=$("sens"); tb.textContent="";
-  const ref=path(sx,sy,aim-squirtAngle(0,pivot),8).hits;
-  for(let t=0;t<=4;t++){
-    const h=path(sx,sy,aim-squirtAngle(t,pivot),8).hits;
+  const ref=path(sx,sy,aim,8).hits;
+  const maxT=Math.floor(MISCUE/MM_PER_TIP*100)/100;
+  [0,1,2,3,maxT].forEach(t=>{
+    const h=path(sx,sy,aim-squirtAngle(t*MM_PER_TIP,pivot),8).hits;
     const tr=document.createElement("tr");
-    if(t===tips) tr.className="hi";
-    const th=document.createElement("th"); th.textContent=t+" 팁"; tr.appendChild(th);
+    if(Math.abs(t-Math.abs(tipsH))<0.12) tr.className="hi";
+    const th=document.createElement("th");
+    th.textContent=(t===maxT?t.toFixed(2)+" 팁 (미스큐 한계)":t+" 팁"); tr.appendChild(th);
     for(let i=0;i<8;i++){
       const td=document.createElement("td");
       if(!h[i]){td.textContent="—";td.className="d";}
       else{
         const d=h[i].dia, dd=ref[i]?d-ref[i].dia:0;
-        const rail='<span style="color:var(--dim);font-size:10px">'+(h[i].rail==='long'?'장':'단')+'</span> ';
-        td.innerHTML=rail+d.toFixed(2)+(t===0?"":'<span style="color:var(--dim)"> ('+(dd>=0?"+":"−")+Math.abs(dd).toFixed(2)+")</span>");
+        td.innerHTML='<span style="color:var(--dim);font-size:10px">'+(h[i].rail==="long"?"장":"단")+"</span> "+
+          d.toFixed(2)+(t===0?"":'<span style="color:var(--dim)"> ('+(dd>=0?"+":"−")+Math.abs(dd).toFixed(2)+")</span>");
       }
       tr.appendChild(td);
     }
     tb.appendChild(tr);
-  }
+  });
 
-  /* heat map */
+  /* heatmap */
   $("hm-cue").textContent="피벗 "+pivot+'"';
-  $("hm-tips").textContent=tips+"팁 · 큐각도 "+elev.toFixed(1)+"°";
+  $("hm-tips").textContent="좌우 "+Math.abs(tipsH).toFixed(2)+"팁 · 큐각도 "+elev.toFixed(1)+"°";
   const speeds=[1.5,2.5,3.0,4.0,5.0], dists=[0.5,1.0,1.5,2.0,2.5,3.0];
   const hm=$("heat"); hm.textContent="";
   hm.appendChild(Object.assign(document.createElement("div"),{className:"ht",textContent:""}));
@@ -567,42 +692,62 @@ function render(){
   dists.forEach(d=>{
     hm.appendChild(Object.assign(document.createElement("div"),{className:"hl",textContent:d.toFixed(1)+"m"}));
     speeds.forEach(s=>{
-      const n=d*1000*Math.tan(sq)-swerveMM(tips,elev,mu,s,d);
+      const n=d*1000*Math.tan(Math.abs(sq))-swerveMM(tipX,elev,mu,s,d);
       const k=clamp(n/70,-1,1), c=document.createElement("div");
-      c.className="hc";
-      const a=Math.abs(k);
+      c.className="hc"; const a=Math.abs(k);
       c.style.background="var(--surface-2)";
-      c.style.background = tips===0 ? "var(--surface-2)"
-        : (k>=0 ? "color-mix(in srgb, var(--warm) "+(18+a*82).toFixed(0)+"%, var(--surface-2))"
-                : "color-mix(in srgb, var(--cool) "+(18+a*82).toFixed(0)+"%, var(--surface-2))");
-      c.style.color = a>0.42 ? "#0C1418" : "var(--muted)";
+      if(Math.abs(tipX)>=0.01){
+        c.style.background = k>=0
+          ? "color-mix(in srgb, var(--warm) "+(18+a*82).toFixed(0)+"%, var(--surface-2))"
+          : "color-mix(in srgb, var(--cool) "+(18+a*82).toFixed(0)+"%, var(--surface-2))";
+      }
+      c.style.color = (Math.abs(tipX)>=0.01 && a>0.42) ? "#0C1418" : "var(--muted)";
       c.textContent=(n>=0?"+":"−")+Math.abs(n).toFixed(0);
       hm.appendChild(c);
     });
   });
 
   /* narration */
-  const cueName = pivot>=19?"저디플렉션":(pivot>=13?"중간 편향":"일반 목재");
-  let p1,p2;
-  if(tips===0){
-    p1="회전을 안 줬으니 스쿼트도 커브도 없다. <b>지금 화면의 두 선이 겹쳐 있는 이유</b>다 — 회전을 주는 순간부터 갈라진다.";
-    p2="회전을 1팁만 올려 보라. 8개 쿠션 도달점이 한꺼번에 움직인다.";
+  const cueName=pivot>=19?"저디플렉션":(pivot>=13?"중간 편향":"일반 목재");
+  const spin3=ww, p=[];
+  if(Math.abs(tipX)<0.01){
+    p.push("좌우 회전을 안 줬으니 스쿼트도 커브도 없다. <b>도면의 두 선이 겹쳐 있는 이유</b>다.");
   }else{
-    p1="지금 조건에서 적구 지점 횡이탈은 <b>"+drift.toFixed(0)+"mm</b>, 공 지름의 <b>"+(drift/61.5).toFixed(2)+"배</b>다. "+
-       "피벗 "+pivot+'"('+cueName+") 큐에 "+tips+"팁, 거리 "+dist.toFixed(1)+"m — 스쿼트는 각도라서 <b>거리에 그대로 곱해진다</b>.";
-    if(net<0) p2="그런데 커브가 "+sw.toFixed(0)+"mm를 되돌려 <b>스쿼트를 넘어섰다</b>. 순 이탈이 회전 준 쪽으로 "+Math.abs(net).toFixed(0)+
-       "mm 넘어간다 — 저스쿼트 큐를 느리게, 멀리 칠 때 나오는 과보정이다. <b>세게 치면 커브가 지연되어 이 부호가 뒤집힌다.</b>";
-    else if(sw/Math.max(drift,1)>0.6) p2="커브가 "+sw.toFixed(0)+"mm를 되돌려 순 이탈이 <b>"+net.toFixed(0)+"mm</b>까지 줄었다. "+
-       "거의 상쇄되는 구간이다 — <b>여기서만 조준한 대로 맞는다.</b> 거리나 세기를 조금만 바꿔도 어긋난다.";
-    else p2="커브는 "+sw.toFixed(0)+"mm밖에 못 되돌려 순 이탈이 <b>"+net.toFixed(0)+"mm</b>다. "+
-       (v>=4?"<b>세게 쳐서 커브가 지연됐다</b> — 스쿼트가 상쇄되지 못하고 그대로 남는다.":
-             "큐를 더 세우거나 약하게 치면 커브가 커져 상쇄가 늘어난다.");
+    p.push("적구 지점 횡이탈 <b>"+Math.abs(drift).toFixed(0)+"mm</b> — 공 지름의 <b>"+
+      (Math.abs(drift)/61.5).toFixed(2)+"배</b>다. 피벗 "+pivot+'"('+cueName+") 큐에 좌우 "+
+      Math.abs(tipsH).toFixed(2)+"팁, 거리 "+dist.toFixed(1)+"m. 스쿼트는 각도라서 <b>거리에 그대로 곱해진다</b>.");
   }
-  $("o-ai").innerHTML="<p>"+p1+"</p><p>"+p2+"</p>";
+  if(s0>1.02){
+    p.push("세로는 <b>오버스핀 "+s0.toFixed(2)+"배</b>다. 자연 구름보다 더 돌고 있어 미끄럼 구간이 <b>"+ds.toFixed(2)+
+      "m</b>로 짧다 — 그래서 <b>회전이 덜 죽는다.</b> 3쿠션에서 회전이 <b>"+spin3.toFixed(0)+
+      "%</b> 남았다. 목적구를 맞고도 남은 톱스핀이 다시 병진으로 바뀌어 <b>앞으로 파고든다.</b>"+
+      (s0>1.22?" 지금은 <b>물리적 상한 1.25에 거의 닿아 있다</b> — 더 밀어도 이 이상은 안 나온다.":""));
+  }else if(s0>0.95){
+    p.push("<b>자연 구름 타점</b>이라 미끄럼 없이 처음부터 구른다. 커브도 안 생기고 회전 손실도 최소다 — 3쿠션 잔존 <b>"+
+      spin3.toFixed(0)+"%</b>.");
+  }else if(s0>-0.05&&s0<0.05){
+    p.push("<b>스턴(중단)</b>이라 미끄럼 구간이 <b>"+ds.toFixed(2)+"m</b>로 길다. 미끄러지는 동안 회전을 많이 잃어 3쿠션 잔존이 <b>"+
+      spin3.toFixed(0)+"%</b>다. <b>같은 팁을 줬어도 밀어쳤을 때보다 회전이 덜 먹는다.</b>");
+  }else if(s0<0){
+    p.push("<b>백스핀(끌어치기)</b>. 미끄럼 구간이 <b>"+ds.toFixed(2)+"m</b>로 가장 길어 회전 손실도 크다 — 3쿠션 잔존 <b>"+
+      spin3.toFixed(0)+"%</b>. 분리각은 90°를 넘어간다.");
+  }else{
+    p.push("미끄럼 구간 <b>"+ds.toFixed(2)+"m</b> 뒤에 구름으로 바뀐다. 적구까지 "+dist.toFixed(1)+
+      "m이므로 도착 시 회전 상태는 <b>"+sArr.toFixed(2)+"</b>. 3쿠션 회전 잔존 <b>"+spin3.toFixed(0)+"%</b>.");
+  }
+  if(Math.abs(tipX)>=0.01){
+    if(!outward) p.push("그리고 커브가 스쿼트를 <b>넘어섰다</b> — 순 이탈이 회전 준 쪽으로 넘어간다. 저스쿼트 큐를 느리게, 멀리 칠 때 나오는 과보정이고, <b>세게 치면 부호가 뒤집힌다.</b>");
+    else if(Math.abs(sw)/Math.max(Math.abs(drift),1)>0.6) p.push("커브가 거의 상쇄해 순 이탈이 <b>"+Math.abs(net).toFixed(0)+"mm</b>까지 줄었다 — <b>여기서만 조준한 대로 맞는다.</b>");
+    else if(v>=4) p.push("<b>세게 쳐서 커브가 지연됐다</b> — 스쿼트가 상쇄되지 못하고 <b>"+Math.abs(net).toFixed(0)+"mm</b> 그대로 남는다.");
+  }
+  $("o-ai").innerHTML=p.map(t=>"<p>"+t+"</p>").join("");
 }
 
-["c-pos","c-aim","c-thick","c-tips","c-dist","c-elev","c-stroke","c-pivot","c-mu"]
-  .forEach(id=>$(id).addEventListener("input",render));
+["c-pos","c-aim","c-thick","c-dist","c-elev","c-speed","c-pivot","c-mu"]
+  .forEach(id=>$(id).addEventListener("input",()=>{
+    if(["c-speed","c-elev"].includes(id)) $("c-preset").value="free";
+    render();
+  }));
 render();
 })();
 </script>
