@@ -13,7 +13,8 @@
 | 정부 정보 공개 (Government Information Access) | [gov-open-data/](gov-open-data/) | 📚 레퍼런스 조사 | 아이디어 아님 — **원재료 조사**. 정보공개청구/공공데이터개방/의무공시/통계마이크로데이터/제한구역 5개 경로 구분, 13개 도메인 데이터 카탈로그, 공공누리 라이선스와 접근 제약 |
 | 3쿠션 당구 포지션 해법기 (3-Cushion Position Solver) | [billiards-3cushion-solver/](billiards-3cushion-solver/) | ⚠️ 아이디어 등록 (경쟁 2건 확인) | 포지션 → 해법 선 + 다이아몬드 시스템 계산 보조. **동일 서비스가 이미 2개**(3ball 무료 / Bricole 유료·트랙션 없음)이나, 실사용 결과 **물리 결손 5개 확인**(스쿼트·커브, 큐 특성, 두께 입력축, 회전 감쇠, 스트로크 타입). '해답기'가 아닌 **시스템↔물리 괴리 진단기 + 개인 장비/테이블 보정**으로 재정의. Unity 3D 1인칭 게임 전환 검토 중 — 경쟁 3건째 확인(3Cushion Masters), **물리 파라미터 = 장비 스탯**이 핵심 아이디어 |
 | 던지기 물리 게임 (Throwing Physics Games) | [throwing-physics-games/](throwing-physics-games/) | 🌱 씨앗 (조사 전) | 우산·도끼·부메랑·귤·공-벽. **소재마다 지배하는 물리가 다르다**(항력/편심회전/세차/변형/충돌). 3cushions 물리 코어 재사용. 핵심 질문 = **가상의 벽을 실생활 벽으로 어떻게 설정하나** |
-| 짧은 네트워크 대전 게임 (Quick-Match Party Games) | [quick-match-party-games/](quick-match-party-games/) | 🌱 씨앗 (조사 전) | **핀토이 = 차이니즈 체커/다이아몬드 게임 계열**(육각별판, 2~6인, 연속 점프) + 심리 데스게임 3종(땅먹기·지반붕괴·명당 만들기). 축이 둘 — **공간 점유 3종 + 경주·경로 1종** |
+| 공간 심리전 게임 (Territory Mind Games) | [quick-match-party-games/](quick-match-party-games/) | 🌱 씨앗 (조사 전) | 땅먹기·지반붕괴·명당 만들기. 자원은 **공간** 하나, 방향만 다름(늘림/줄어듦/고름). 하나의 영역 계산 엔진 공유. **지반붕괴가 가장 특이** — "움직일수록 갈 곳이 없어진다" |
+| 핀토이 (Pin Toy) | [pin-toy/](pin-toy/) | 🌱 씨앗 (조사 전) | 차이니즈 체커/다이아몬드 게임 계열. 육각별판, 2~6인, **연속 점프**. 핵심은 **적대적 협력**(상대 말이 내 징검다리). 과제 = **어떻게 짧게 만드나** |
 | 창작물 만들기 (Creative Works) | [ai-creative/](ai-creative/) | 🌱 씨앗 (A/B 미정) | 소설·웹툰·노래. ⚠️ **작품을 만들 것인가, 만드는 도구를 만들 것인가**부터 갈려야 함 |
 
 ## 문서 규모
@@ -26,6 +27,7 @@
 | billiards-3cushion-solver | 16 + 동작 목업 2 + 게임 레포 README | 2026-09-01 |
 | throwing-physics-games | 2 | 2026-09-01 |
 | quick-match-party-games | 1 | 2026-09-01 |
+| pin-toy | 1 | 2026-09-01 |
 | ai-creative | 1 | 2026-09-01 |
 
 > 일자별 진행 내역은 [dev-docs/changelog/](../dev-docs/changelog/) 참조.
