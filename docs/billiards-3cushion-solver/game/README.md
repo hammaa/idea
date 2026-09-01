@@ -1,9 +1,12 @@
-# Squerve
+# 3cushions
 
 > **당신의 큐로 계산하는 3쿠션 캐롬 시뮬레이터**
 > A three-cushion carom simulator where the physics — and your own cue — are the game rules.
 
-<sub>*가제(working title). `squerve`는 스쿼트(squirt)와 커브(swerve)의 합성어로, 이 프로젝트가 유일하게 제대로 모델링하는 현상의 이름이다. 대안: `carom-lab`, `pivot`*</sub>
+<sub>*가제(working title).*</sub>
+
+> ⚠️ **코드 네이밍 주의:** 레포 이름은 `3cushions`로 두되, **C# 네임스페이스는 숫자로 시작할 수 없다.**
+> 코드 안에서는 `ThreeCushions` (또는 `ThreeCushions.Physics` / `.Aim` / `.Analysis`)를 쓴다.
 
 ---
 
