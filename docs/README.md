@@ -24,13 +24,13 @@
 | prompt-pack | 7 | 2026-08-26 |
 | formula-map-compression | 12 + 측정 스크립트 13 | 2026-08-27 |
 | gov-open-data | 4 | 2026-08-30 |
-| billiards-3cushion-solver | 16 + 동작 목업 2 + 게임 레포 README | 2026-09-01 |
+| billiards-3cushion-solver | 14 + 동작 목업 2 + 게임 레포 README | 2026-09-02 |
 | throwing-physics-games | 2 | 2026-09-02 |
 | quick-match-party-games | 1 | 2026-09-01 |
 | pin-toy | 1 | 2026-09-01 |
 | ai-creative | 1 | 2026-09-01 |
 
-## 작업 현황 (2026-09-02)
+## 작업 현황 (2026-09-03)
 
 | 상태 | 아이디어 |
 |---|---|
