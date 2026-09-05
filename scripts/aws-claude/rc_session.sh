@@ -1,6 +1,9 @@
 #!/bin/bash
 # rc_session.sh — AWS 서버에 Remote Control 클로드 세션을 상주시킨다.
 #
+# 이름 주의: 모바일 앱 목록에 뜨는 이름은 --remote-control 인자가 아니라
+# --remote-control-session-name-prefix (기본값 hostname) 에서 나온다. 둘 다 준다.
+#
 # 목적: 폰(Claude 모바일 앱 > Code)에서 서버 작업을 직접 시킬 수 있게 하는 것.
 # --remote-control 은 "시작할 때" 붙이는 플래그라서, 이미 뜬 세션에는 소급 적용이 안 된다.
 # 서버는 헤드리스이므로 screen 안에 띄워 SSH 를 끊어도 살아있게 한다.
@@ -56,7 +59,7 @@ PY
     # exec 를 쓰지 않는다: claude 가 죽어도 bash 가 남아 종료코드를 기록하게 한다.
     rm -f "$EXITF"
     TERM=xterm-256color screen -L -Logfile "$LOG" -dmS "$SCR" \
-        bash -lc "unset CLAUDE_CODE_OAUTH_TOKEN ANTHROPIC_API_KEY; export NODE_OPTIONS='${RC_NODE_OPTIONS:---max-old-space-size=380}'; cd '$WORKDIR'; claude --remote-control '$NAME'; echo \"__EXIT=\$? at \$(date +%T)\" >> '$EXITF'; sleep 3600"
+        bash -lc "unset CLAUDE_CODE_OAUTH_TOKEN ANTHROPIC_API_KEY; export NODE_OPTIONS='${RC_NODE_OPTIONS:---max-old-space-size=380}'; cd '$WORKDIR'; claude --remote-control '$NAME' --remote-control-session-name-prefix '$NAME'; echo \"__EXIT=\$? at \$(date +%T)\" >> '$EXITF'; sleep 3600"
 
     sleep 5
     if alive; then

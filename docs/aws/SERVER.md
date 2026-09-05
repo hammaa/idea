@@ -8,7 +8,7 @@
 
 | 항목 | 값 |
 |------|-----|
-| **호스트** | idea-aws (Windows hosts 파일 등록, 43.203.241.72) |
+| **호스트** | idea-aws (서버 호스트명 = `idea-aws`, Windows hosts 파일 등록, 43.203.241.72) |
 | **리전** | ap-northeast-2 (서울) |
 | **키 페어** | hammaaa_aws.pem |
 | **사용자** | ec2-user |
@@ -62,6 +62,29 @@ ssh -i C:/Users/hamma/.ssh/hammaaa_aws.pem ec2-user@idea-aws
 ```
 
 세션 작업 디렉토리는 `~/idea` (레포 루트)로 고정되어 있다 (`RC_WORKDIR` 로 변경 가능).
+
+### ⚠️ 세션 이름이 호스트명으로 뜨던 문제 (2026-09-05 해결)
+
+`--remote-control '<이름>'` 으로 이름을 줘도 모바일 앱 목록에는 **호스트명**
+(`ip-172-31-14-156.ap-northeast-2.compute.internal`)이 표시됐다.
+
+원인은 별도 플래그였다:
+
+```
+--remote-control-session-name-prefix <prefix>   기본값: hostname
+```
+
+앱 목록에 뜨는 이름은 이 **프리픽스**에서 나오고, 지정하지 않으면 호스트명이 그대로 쓰인다.
+
+두 군데를 모두 잡았다:
+
+| 조치 | 내용 |
+|---|---|
+| 스크립트 | `rc_session.sh` 기동 명령에 `--remote-control-session-name-prefix "$NAME"` 추가 |
+| 호스트명 | `hostnamectl set-hostname idea-aws` + `/etc/cloud/cloud.cfg` 의 `preserve_hostname: true` (EC2 는 재부팅 시 cloud-init 이 호스트명을 되돌리므로 이 설정이 없으면 원복된다) |
+
+호스트명까지 바꾼 이유는, 프리픽스를 놓친 경로(수동 기동 등)에서도 `idea-aws` 로 뜨게 하기 위해서다.
+`/etc/hosts` 에 `127.0.0.1 idea-aws` 도 추가해 이름 해석 실패를 막았다.
 
 ### ⚠️ 버전 갱신은 재시작해야 반영된다
 
