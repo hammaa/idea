@@ -101,6 +101,32 @@ readlink -f ~/.local/bin/claude  # 디스크에 있는 버전
 **실제 사례 (2026-09-05):** 8/26에 뜬 세션이 **2.1.246**을 물고 있었는데
 8/27에 디스크가 **2.1.247**로 갱신돼 있었다. 재시작 전까지 열흘간 옛 버전으로 돌았다.
 
+### ⚠️ claude 는 자동 업데이트 후 기동 인자를 잃는다
+
+재시작 직후엔 `claude --remote-control 'idea-aws'` 로 떠 있지만, 자동 업데이트가 걸리면
+**클로드가 스스로 재실행(exec)하면서 기동 인자를 버린다.** 남는 모습은 이렇다:
+
+```
+656644 screen  SCREEN ... bash -lc "... claude --remote-control 'idea-aws' ..."
+656646 bash    (래퍼 — 여기엔 원래 인자가 그대로 남아 보인다)
+656671 claude  /home/ec2-user/.local/bin/claude --permission-mode auto   ← 인자 소실
+```
+
+**여기서 두 가지가 깨진다:**
+
+| 증상 | 원인 |
+|---|---|
+| 앱 목록에 호스트명이 뜬다 | 이름 인자가 사라진 뒤 `/rc` 로 재연결 → 기본값(호스트명) 사용 |
+| `rc_restart.sh` 가 `버전=알수없음` 을 찍는다 | `--remote-control` 문자열로 프로세스를 찾던 `rc_pid()` 가 실패 |
+
+**대응:**
+
+- `rc_pid()` 를 인자 매칭이 아니라 **screen 세션의 자손 추적**으로 변경 (screen PID → bash → claude).
+- 호스트명 자체를 `idea-aws` 로 바꿔, 인자가 날아가도 기본 이름이 `idea-aws` 가 되게 함.
+
+`ps -eo pid,ppid,comm,args | grep claude` 로 래퍼(bash)가 아니라 **comm=claude 인 프로세스**의
+인자를 봐야 실제 상태를 알 수 있다.
+
 관리 스크립트: [scripts/aws-claude/rc_restart.sh](../../scripts/aws-claude/rc_restart.sh)
 
 ```bash

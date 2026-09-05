@@ -27,14 +27,21 @@ WAIT_ALIVE=40                         # 기동 후 생존 확인 대기 (초)
 mkdir -p "$(dirname "$LOG")"
 say() { echo "[$(date '+%F %T')] $*" | tee -a "$LOG"; }
 
-# 주의: pgrep -f 는 screen 래퍼와 bash -lc 까지 잡는다.
-# 실제 claude 프로세스(comm=claude)만 골라야 /proc/PID/exe 로 버전을 읽을 수 있다.
+# 주의 1: pgrep -f 는 screen 래퍼와 bash -lc 까지 잡는다.
+#         실제 claude 프로세스(comm=claude)만 골라야 /proc/PID/exe 로 버전을 읽을 수 있다.
+# 주의 2: cmdline 에 '--remote-control' 이 있는지로 찾으면 안 된다.
+#         claude 는 자동 업데이트 후 스스로 재실행(exec)하면서 기동 인자를 잃어버리고
+#         '--permission-mode auto' 같은 모습으로 남는다. 실제로 2026-09-05 재시작에서
+#         이 때문에 PID 를 못 찾아 "버전=알수없음" 이 찍혔다.
+#         그래서 인자가 아니라 screen 세션의 자손인지로 판별한다.
 rc_pid() {
-    local p
-    for p in $(pgrep -x claude 2>/dev/null); do
-        if tr '\0' ' ' < "/proc/$p/cmdline" 2>/dev/null | grep -q -- '--remote-control'; then
+    local scr_pid bpid p
+    scr_pid="$(screen -ls 2>/dev/null | grep "\.${SCR}[[:space:]]" | awk '{print $1}' | cut -d. -f1 | head -1)"
+    [ -n "$scr_pid" ] || return 1
+    for bpid in $(pgrep -P "$scr_pid" 2>/dev/null); do
+        for p in $(pgrep -P "$bpid" -x claude 2>/dev/null); do
             echo "$p"; return 0
-        fi
+        done
     done
     return 1
 }
