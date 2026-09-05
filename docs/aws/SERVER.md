@@ -63,6 +63,46 @@ ssh -i C:/Users/hamma/.ssh/hammaaa_aws.pem ec2-user@idea-aws
 
 세션 작업 디렉토리는 `~/idea` (레포 루트)로 고정되어 있다 (`RC_WORKDIR` 로 변경 가능).
 
+### ⚠️ 버전 갱신은 재시작해야 반영된다
+
+`claude` 바이너리가 업데이트돼도 **이미 떠 있는 프로세스는 옛 버전을 계속 물고 있다.**
+심볼릭 링크(`~/.local/bin/claude`)만 새 버전을 가리킬 뿐이다.
+
+```bash
+# 지금 돌고 있는 프로세스의 실제 버전 확인
+PID=$(for p in $(pgrep -x claude); do tr '\0' ' ' < /proc/$p/cmdline | grep -q -- --remote-control && echo $p; done)
+readlink /proc/$PID/exe          # 실행 중인 버전
+readlink -f ~/.local/bin/claude  # 디스크에 있는 버전
+```
+
+**실제 사례 (2026-09-05):** 8/26에 뜬 세션이 **2.1.246**을 물고 있었는데
+8/27에 디스크가 **2.1.247**로 갱신돼 있었다. 재시작 전까지 열흘간 옛 버전으로 돌았다.
+
+관리 스크립트: [scripts/aws-claude/rc_restart.sh](../../scripts/aws-claude/rc_restart.sh)
+
+```bash
+# 세션 밖(SSH)에서
+~/idea/scripts/aws-claude/rc_restart.sh
+
+# ⚠️ 세션 안에서 클로드가 자기 자신을 재시작할 때는 반드시 분리 실행
+setsid nohup ~/idea/scripts/aws-claude/rc_restart.sh 20 >/dev/null 2>&1 &
+```
+
+**왜 분리 실행이 필요한가:** 세션 안에서 돌고 있는 클로드가 자기를 죽이면
+재시작 명령을 실행할 주체가 같이 사라진다. 반드시 `setsid`/`nohup` 으로 떼어내야 한다.
+
+스크립트는 stop → start 후 **최대 40초간 생존을 확인**하고, 실패하면 3회까지 재시도한다.
+프롬프트에 걸린 경우를 대비해 방어적으로 Enter 도 보낸다. 결과는 `~/logs/rc_restart.log`.
+
+**재시작 전 확인할 것:**
+
+| 항목 | 확인 방법 |
+|---|---|
+| 자격증명 | `ls -la ~/.claude/.credentials.json` — 없으면 `rc_session.sh login` 먼저 |
+| 폴더 신뢰 | `~/.claude.json` 의 `projects["/home/ec2-user/idea"].hasTrustDialogAccepted` 가 `true` 인지 |
+
+**둘 중 하나라도 안 되어 있으면 재시작 후 세션이 안 뜨고, 그때는 SSH 로만 복구된다.**
+
 ---
 
 ## GitHub / 레포지터리 권한
@@ -78,4 +118,4 @@ GIT_SSH_COMMAND='ssh -i ~/.ssh/id_ed25519' git clone git@github.com:hammaa/idea.
 
 ---
 
-*최종 업데이트: 2026-08-26*
+*최종 업데이트: 2026-09-05*
