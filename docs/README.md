@@ -94,4 +94,4 @@
 
 ---
 
-> 일자별 진행 내역은 [dev-docs/changelog/](../dev-docs/changelog/) 참조. (2026-08-26 ~ 2026-09-03)
+> 일자별 진행 내역은 [dev-docs/changelog/](../dev-docs/changelog/) 참조. (2026-08-26 ~ 2026-09-05)
